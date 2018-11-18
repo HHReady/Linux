@@ -89,7 +89,7 @@ echo "File /opt/parse_log/parse.db not exist"
 fi >>  /opt/parse_log/parse.log
 
 trap 'rm -f "$search_file"; exit $?' INT TERM EXIT
-echo "Exit into script because kill \"INT TERM EXIT\""  >> /opt/parse_log/parse.log  2>&1 
+echo "Exit $0""  >> /opt/parse_log/parse.log  2>&1 
 if [ -f $search_file ]; then
     rm -f /opt/parse_log/parse.db
 fi
