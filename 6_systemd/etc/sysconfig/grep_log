@@ -1,0 +1,4 @@
+#that env for my script
+FILE=/var/log/secure
+WORD='Accepted password'
+

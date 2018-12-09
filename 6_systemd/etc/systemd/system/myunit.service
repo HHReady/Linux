@@ -1,0 +1,34 @@
+#Все комментарии лучше описывать до блоков исполнения [Unit]
+
+[Unit]
+Description=MyUnit
+
+After=network.target
+Requires=sockets.target
+Wants=swap.target
+
+[Service]
+Type=oneshort
+
+PIDFile=/opt/MyUnit/MyUnit.pid
+WorkingDirectory=/opt/MyUnit 
+User=myunit
+Group=myunit
+
+OOMScoreAdjust=-100
+
+ExecStart=/bin/sh -c '/opt/MyUnit/MyUnit.start'
+ExecStop=/bin/sh -c '/opt/MyUnit/MyUnit.stop'
+ExecReload=/bin/sh -c '/opt/MyUnit/MyUnit.restart'
+
+TimeoutSec=300
+
+Restart=always
+
+WATCHDOG=1
+
+LimitNOFILE=524288
+
+[Install]
+
+WantedBy=multi-user.target

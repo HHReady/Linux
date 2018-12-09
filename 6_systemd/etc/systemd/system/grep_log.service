@@ -1,0 +1,29 @@
+#https://www.freedesktop.org/software/systemd/man/systemd.service.html
+[Unit]
+Description=Service find $WORD in $FILE
+
+[Service]
+Type=notify
+#EnvironmentFile=/etc/sysconfig/grep_log
+Environment=WORD=localhost
+Environment=FILE=/var/log/secure
+ExecStart=/usr/bin/grep $WORD $FILE
+
+#ExecStart=/usr/bin/grep localhost /var/log/secure
+
+#http://man7.org/linux/man-pages/man7/signal.7.html
+ExecReload=/bin/kill -HUP $MAINPID
+
+#One of control-group, process, mixed, none
+#If set to process, only the main process itself is killed
+KillMode=process
+
+#Takes one of no(the default), on-success, on-failure, on-abnormal, on-watchdog, on-abort, or always.
+Restart=on-failure
+
+#Configures the time to sleep before restarting a service (as configured with Restart=). Takes a unit-less value in seconds, or a time span value such as "5min 20s". Defaults to 100ms.
+RestartSec=5
+
+[Install]
+
+WantedBy=multi-user.target

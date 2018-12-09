@@ -1,0 +1,20 @@
+[Unit]
+Description=January warehouse gateway for pult %i service
+Wants=postgresql-9.6.service
+After=network.target postgresql-9.6.service
+
+[Service]
+Type=forking
+User=jangateway
+Group=jangateway
+
+PIDFile=/opt/jangateway_wh_%i/jangateway_wh.pid
+WorkingDirectory=/opt/jangateway_wh_%i
+
+
+ExecStart=/bin/sh -c '/opt/jangateway_wh_%i/jangateway_wh.start'
+ExecStop=/bin/sh -c '/opt/jangateway_wh_%i/jangateway_wh.stop'
+ExecStatus=/bin/sh -c '/opt/jangateway_wh_%i/jangateway_wh.state'
+
+[Install]
+WantedBy=multi-user.target
