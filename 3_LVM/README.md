@@ -5,61 +5,61 @@
 lvmdiskscan
 
 ###Для начала разметим диск для будущего использования LVM - создадим PV:
-*[root@otuslinux ~]#pvcreate /dev/sdb
+```
+[root@otuslinux ~]#pvcreate /dev/sdb
 Затем можно создавать первый уровень абстракции - VG:
-*[root@otuslinux ~]#vgcreate otus /dev/sdb  (Если нужно расширить существующее vgextend otus /dev/sdb)
+[root@otuslinux ~]#vgcreate otus /dev/sdb  (Если нужно расширить существующее vgextend otus /dev/sdb)
 И в итоге создать Logical Volume (далее - LV):
-*[root@otuslinux ~]#lvcreate -l+80%FREE -n test otus (Если нужно расширить существующее lvextend -L+40G -n test otus )
+[root@otuslinux ~]#lvcreate -l+80%FREE -n test otus (Если нужно расширить существующее lvextend -L+40G -n test otus )
 Посмотреть информацию о только что созданном Volume Group:
-*[root@otuslinux ~]#vgdisplay otus
+[root@otuslinux ~]#vgdisplay otus
 Так, например, можно посмотреть информацию о том, какие диски входит в VG:
-*[root@otuslinux ~]#vgdisplay -v otus | grep 'PV NAME'
+[root@otuslinux ~]#vgdisplay -v otus | grep 'PV NAME'
 Детальную информацию о LV получим командой:
-*[root@otuslinux ~]#lvdisplay /dev/otus/test
+[root@otuslinux ~]#lvdisplay /dev/otus/test
 В сжатом виде информацию можно получить командами vgs и lvs:
-
+```
 
 ###Мы можем создать еще один LV из свободного места. На этот раз создадим не экстентами, а абсолютным значением в мегабайтах:
-*[root@otuslinux ~]#lvcreate -L100M -n small otus
+[root@otuslinux ~]#lvcreate -L100M -n small otus
 
 ###Создадим на LV файловую систему и смонтируем его
-*[root@otuslinux ~]#mkfs.ext4 /dev/otus/test
-*[root@otuslinux ~]#mkdir /data
-*[root@otuslinux ~]#mount /dev/otus/test /data/
-*[root@otuslinux ~]#mount | grep /data
+[root@otuslinux ~]#mkfs.ext4 /dev/otus/test
+[root@otuslinux ~]#mount /dev/otus/test /data/
+[root@otuslinux ~]#mount | grep /data
 
 ##LVM Resizing
 Допустим перед нами встала проблема нехватки свободного места в директории /data. 
 Мы можем расширить файловую систему на LV /dev/otus/test за счет нового блочного устройства /dev/sdc.
 Для начала так же необходимо создать PV:
-*[root@otuslinux ~]#pvcreate /dev/sdc
+[root@otuslinux ~]#pvcreate /dev/sdc
 Далее необходимо расширить VG добавив в него этот диск
-*[root@otuslinux ~]#vgextend otus /dev/sdc
+[root@otuslinux ~]#vgextend otus /dev/sdc
 Убедимся что новый диск присутствует в новой VG: 
-*[root@otuslinux ~]#vgdisplay -v otus | grep 'PV Name'
+[root@otuslinux ~]#vgdisplay -v otus | grep 'PV Name'
 Убедимся что диск добавлен:
-*[root@otuslinux ~]#vgdisplay -v otus | grep 'PV Name'
+[root@otuslinux ~]#vgdisplay -v otus | grep 'PV Name'
 И что места в VG прибавилось:
-*[root@otuslinux ~]# vgs
+[root@otuslinux ~]# vgs
 
 Увеличиваем LV за счет появившегося свободного места. Возьмем не все место - это для того, 
 чтобы осталось место для демонстрации снапшотов:
-*[root@otuslinux ~]#lvextend -l+80%FREE /dev/otus/test
+[root@otuslinux ~]#lvextend -l+80%FREE /dev/otus/test
 Наблюдаем что LV расширен до 11.14g:
-*[root@otuslinux ~]#lvs /dev/otus/test
+[root@otuslinux ~]#lvs /dev/otus/test
 
 Но файловая система при этом осталась прежнего размера:
-*[root@otuslinux ~]#df -Th /data
+[root@otuslinux ~]#df -Th /data
 Filesystem   
 Type  Size  Used Avail Use% Mounted on
 /dev/mapper/otus-test ext4  7.8G  7.8G 0 100% /data
 Произведем resize файловой системы:
-*[root@otuslinux ~]#resize2fs /dev/otus/test
+[root@otuslinux ~]#resize2fs /dev/otus/test
 resize2fs 1.42.9 (28-Dec-2013)
 Filesystem at /dev/otus/test is mounted on /data; on-line resizing required
 old_desc_blocks = 1, new_desc_blocks = 2
 The filesystem on /dev/otus/test is now 2919424 blocks long.
-*[root@otuslinux ~]#df -Th /data
+[root@otuslinux ~]#df -Th /data
 Filesystem        
 Type  Size  Used Avail Use% Mounted on
 /dev/mapper/otus-test ext4   11G  7.8G  2.6G  76% /data
@@ -67,22 +67,22 @@ Type  Size  Used Avail Use% Mounted on
 ##Уменьшение LV
 Допустим Вы забыли оставить место на снапшоты. Можно уменьшить существующий LV с помощью команды lvreduce:
 
-*[root@otuslinux ~]#lvreduce /dev/otus/test -L 10G
-*[root@otuslinux ~]#df -Th /data/
+[root@otuslinux ~]#lvreduce /dev/otus/test -L 10G
+[root@otuslinux ~]#df -Th /data/
 
 #LVM Snapshot
 Снапшот создается командой lvcreate, только с флагом -s, который указывает на то, что это снимок:
-*[root@otuslinux ~]#lvcreate -L 500M -s -n test-snap /dev/otus/test
+[root@otuslinux ~]#lvcreate -L 500M -s -n test-snap /dev/otus/test
 Проверим с помощью vgs:
-*[root@otuslinux ~]# sudo vgs -o +lv_size,lv_name | grep test
+[root@otuslinux ~]# sudo vgs -o +lv_size,lv_name | grep test
 Команда lsblk, например, нам наглядно покажет, что произошло:
-*[root@otuslinux ~]# lsblk
+[root@otuslinux ~]# lsblk
 
 ####Снапшот можно смонтировать как и любой другой LV:
-*[root@otuslinux]# mkdir /data-snap
-*[root@otuslinux data]# mount /dev/otus/test-snap /data-snap/
-*[root@otuslinux data]# ll /data-snap/
-*[root@otuslinux data]# unmount /data-snap
+[root@otuslinux]# mkdir /data-snap
+[root@otuslinux data]# mount /dev/otus/test-snap /data-snap/
+[root@otuslinux data]# ll /data-snap/
+[root@otuslinux data]# unmount /data-snap
 
 Можно также восстановить предыдущее состояние. “Откатиться” на снапшот. Для этого 
 сначала для большей наглядности удалим наш log файл:
