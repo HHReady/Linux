@@ -1,0 +1,254 @@
+Скрипт запущен Вт 14 май 2019 22:47:52
+]0;root@node2:~[?1034h[root@node2 ~]# vgs
+  VG     #PV #LV #SN Attr   VSize  VFree
+  centos   1   2   0 wz--n- <7,00g    0 
+]0;root@node2:~[root@node2 ~]# vgrename VolGroup00 OtusRoot[1P OtusRoot[1P OtusRoot[1P OtusRoot[1P OtusRoot[1P OtusRoot[1P OtusRoot[1P OtusRoot[1P OtusRoot[1P OtusRoot[1P OtusRootc OtusRoote OtusRootn OtusRoott OtusRooto OtusRoots OtusRoot
+  Volume group "centos" successfully renamed to "OtusRoot"
+]0;root@node2:~[root@node2 ~]# df -h
+Файловая система        Размер Использовано  Дост Использовано% Cмонтировано в
+/dev/mapper/centos-root   6,2G         1,6G  4,7G           26% /
+devtmpfs                  484M            0  484M            0% /dev
+tmpfs                     496M            0  496M            0% /dev/shm
+tmpfs                     496M         6,8M  489M            2% /run
+tmpfs                     496M            0  496M            0% /sys/fs/cgroup
+/dev/sda1                1014M         133M  882M           14% /boot
+tmpfs                     100M            0  100M            0% /run/user/0
+]0;root@node2:~[root@node2 ~]# vgs
+  VG       #PV #LV #SN Attr   VSize  VFree
+  OtusRoot   1   2   0 wz--n- <7,00g    0 
+]0;root@node2:~[root@node2 ~]# пкуз [K[K[K[K[Kgrep /etc/fstab[C /etc/fstabc /etc/fstabe /etc/fstabn /etc/fstabt /etc/fstabo /etc/fstabs /etc/fstab
+/dev/mapper/[01;31m[Kcentos[m[K-root /                       xfs     defaults        0 0
+/dev/mapper/[01;31m[Kcentos[m[K-swap swap                    swap    defaults        0 0
+]0;root@node2:~[root@node2 ~]# grep centos /etc/fstab[1P /etc/fstab[1P /etc/fstab[1P /etc/fstab[1P /etc/fstab[1P /etc/fstab[1P /etc/fstab[1P/etc/fstab[1P /etc/fstab[1P /etc/fstab[1P /etc/fstab[1P /etc/fstabs /etc/fstabe /etc/fstabd /etc/fstab[C /etc/fstab` /etc/fstab` /etc/fstab[1@s[1@/[1@/[1@q[C[1@/[1@c[1@e[1@n[1@t[1@o[1@s[C[1@O[1@t[1@u[1@s[1@R[1@o[1@o[1@t
+bash: s/centos/OtusRoot/q: Нет такого файла или каталога
+sed: -e выражение #1, символ 6: неизвестная команда: `f'
+]0;root@node2:~[root@node2 ~]# sed `s/centos/OtusRoot/q` /etc/fstab[1P /etc/fstab' /etc/fstab[1P[1@'
+sed: -e выражение #1, символ 19: неизвестный модификатор к `s'
+]0;root@node2:~[root@node2 ~]# sed 's/centos/OtusRoot/q' /etc/fstab[1P
+
+#
+# /etc/fstab
+# Created by anaconda on Thu Jan 24 11:02:40 2019
+#
+# Accessible filesystems, by reference, are maintained under '/dev/disk'
+# See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info
+#
+/dev/mapper/OtusRoot-root /                       xfs     defaults        0 0
+UUID=1fd52207-d232-4a4e-9be7-f888029f7320 /boot                   xfs     defaults        0 0
+/dev/mapper/OtusRoot-swap swap                    swap    defaults        0 0
+]0;root@node2:~[root@node2 ~]# 
+]0;root@node2:~[root@node2 ~]# sed 's/centos/OtusRoot/' /etc/fstab[1@-[1@i[1@ 
+]0;root@node2:~[root@node2 ~]# 
+]0;root@node2:~[root@node2 ~]# cat /etc/fstab
+
+#
+# /etc/fstab
+# Created by anaconda on Thu Jan 24 11:02:40 2019
+#
+# Accessible filesystems, by reference, are maintained under '/dev/disk'
+# See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info
+#
+/dev/mapper/OtusRoot-root /                       xfs     defaults        0 0
+UUID=1fd52207-d232-4a4e-9be7-f888029f7320 /boot                   xfs     defaults        0 0
+/dev/mapper/OtusRoot-swap swap                    swap    defaults        0 0
+]0;root@node2:~[root@node2 ~]# 
+]0;root@node2:~[root@node2 ~]# 
+]0;root@node2:~[root@node2 ~]# /etc/default/grubs/etc/default/grube/etc/default/grubd/etc/default/grub /etc/default/grub'/etc/default/grubs/etc/default/grub[C/etc/default/grubc/etc/default/grube/etc/default/grubn/etc/default/grubt/etc/default/grubo/etc/default/grubs/etc/default/grub[C/etc/default/grubO/etc/default/grubt/etc/default/grubu/etc/default/grubs/etc/default/grubR/etc/default/grubo/etc/default/grubo/etc/default/grubt/etc/default/grub[C/etc/default/grub'/etc/default/grub /etc/default/grub
+GRUB_TIMEOUT=5
+GRUB_DISTRIBUTOR="$(sed 's, release .*$,,g' /etc/system-release)"
+GRUB_DEFAULT=saved
+GRUB_DISABLE_SUBMENU=true
+GRUB_TERMINAL_OUTPUT="console"
+GRUB_CMDLINE_LINUX="crashkernel=auto rd.lvm.lv=OtusRoot/root rd.lvm.lv=centos/swap rhgb quiet"
+GRUB_DISABLE_RECOVERY="true"
+]0;root@node2:~[root@node2 ~]# [K[root@node2 ~]# 
+]0;root@node2:~[root@node2 ~]# sed 's/centos/OtusRoot/' /etc/default/grub
+GRUB_TIMEOUT=5
+GRUB_DISTRIBUTOR="$(sed 's, release .*$,,g' /etc/system-release)"
+GRUB_DEFAULT=saved
+GRUB_DISABLE_SUBMENU=true
+GRUB_TERMINAL_OUTPUT="console"
+GRUB_CMDLINE_LINUX="crashkernel=auto rd.lvm.lv=OtusRoot/root rd.lvm.lv=centos/swap rhgb quiet"
+GRUB_DISABLE_RECOVERY="true"
+]0;root@node2:~[root@node2 ~]# sed 's/centos/OtusRoot/' /etc/default/grub[1P
+sed: -e выражение #1, символ 9: неизвестная команда: `O'
+]0;root@node2:~[root@node2 ~]# sed '/centos/OtusRoot/' /etc/default/grub[1@s[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1@q
+sed: -e выражение #1, символ 19: неизвестный модификатор к `s'
+]0;root@node2:~[root@node2 ~]# sed 's/centos/OtusRoot/q' /etc/default/grub[1P[1@g
+GRUB_TIMEOUT=5
+GRUB_DISTRIBUTOR="$(sed 's, release .*$,,g' /etc/system-release)"
+GRUB_DEFAULT=saved
+GRUB_DISABLE_SUBMENU=true
+GRUB_TERMINAL_OUTPUT="console"
+GRUB_CMDLINE_LINUX="crashkernel=auto rd.lvm.lv=OtusRoot/root rd.lvm.lv=OtusRoot/swap rhgb quiet"
+GRUB_DISABLE_RECOVERY="true"
+]0;root@node2:~[root@node2 ~]# 
+]0;root@node2:~[root@node2 ~]# sed 's/centos/OtusRoot/g' /etc/default/grub[1@-[1@i[1@ 
+]0;root@node2:~[root@node2 ~]# /boot/grub2/grub.cfg /boot/grub2/grub.cfg[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cs /boot/grub2/grub.cfg[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ce /boot/grub2/grub.cfg[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cd /boot/grub2/grub.cfg[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C /boot/grub2/grub.cfg' /boot/grub2/grub.cfgs /boot/grub2/grub.cfg/ /boot/grub2/grub.cfgc /boot/grub2/grub.cfge /boot/grub2/grub.cfgn /boot/grub2/grub.cfgt /boot/grub2/grub.cfgo /boot/grub2/grub.cfgs /boot/grub2/grub.cfg/ /boot/grub2/grub.cfgO /boot/grub2/grub.cfgt /boot/grub2/grub.cfgu /boot/grub2/grub.cfgs /boot/grub2/grub.cfgR /boot/grub2/grub.cfgo /boot/grub2/grub.cfgo /boot/grub2/grub.cfgt /boot/grub2/grub.cfg/ /boot/grub2/grub.cfgg /boot/grub2/grub.cfg' /boot/grub2/grub.cfg
+#
+# DO NOT EDIT THIS FILE
+#
+# It is automatically generated by grub2-mkconfig using templates
+# from /etc/grub.d and settings from /etc/default/grub
+#
+
+### BEGIN /etc/grub.d/00_header ###
+set pager=1
+
+if [ -s $prefix/grubenv ]; then
+  load_env
+fi
+if [ "${next_entry}" ] ; then
+   set default="${next_entry}"
+   set next_entry=
+   save_env next_entry
+   set boot_once=true
+else
+   set default="${saved_entry}"
+fi
+
+if [ x"${feature_menuentry_id}" = xy ]; then
+  menuentry_id_option="--id"
+else
+  menuentry_id_option=""
+fi
+
+export menuentry_id_option
+
+if [ "${prev_saved_entry}" ]; then
+  set saved_entry="${prev_saved_entry}"
+  save_env saved_entry
+  set prev_saved_entry=
+  save_env prev_saved_entry
+  set boot_once=true
+fi
+
+function savedefault {
+  if [ -z "${boot_once}" ]; then
+    saved_entry="${chosen}"
+    save_env saved_entry
+  fi
+}
+
+function load_video {
+  if [ x$feature_all_video_module = xy ]; then
+    insmod all_video
+  else
+    insmod efi_gop
+    insmod efi_uga
+    insmod ieee1275_fb
+    insmod vbe
+    insmod vga
+    insmod video_bochs
+    insmod video_cirrus
+  fi
+}
+
+terminal_output console
+if [ x$feature_timeout_style = xy ] ; then
+  set timeout_style=menu
+  set timeout=5
+# Fallback normal timeout code in case the timeout_style feature is
+# unavailable.
+else
+  set timeout=5
+fi
+### END /etc/grub.d/00_header ###
+
+### BEGIN /etc/grub.d/00_tuned ###
+set tuned_params=""
+set tuned_initrd=""
+### END /etc/grub.d/00_tuned ###
+
+### BEGIN /etc/grub.d/01_users ###
+if [ -f ${prefix}/user.cfg ]; then
+  source ${prefix}/user.cfg
+  if [ -n "${GRUB2_PASSWORD}" ]; then
+    set superusers="root"
+    export superusers
+    password_pbkdf2 root ${GRUB2_PASSWORD}
+  fi
+fi
+### END /etc/grub.d/01_users ###
+
+### BEGIN /etc/grub.d/10_linux ###
+menuentry 'CentOS Linux (3.10.0-957.el7.x86_64) 7 (Core)' --class OtusRoot --class gnu-linux --class gnu --class os --unrestricted $menuentry_id_option 'gnulinux-3.10.0-957.el7.x86_64-advanced-6480e040-1b8a-4515-b29b-1ce5100fe284' {
+	load_video
+	set gfxpayload=keep
+	insmod gzio
+	insmod part_msdos
+	insmod xfs
+	set root='hd0,msdos1'
+	if [ x$feature_platform_search_hint = xy ]; then
+	  search --no-floppy --fs-uuid --set=root --hint-bios=hd0,msdos1 --hint-efi=hd0,msdos1 --hint-baremetal=ahci0,msdos1 --hint='hd0,msdos1'  1fd52207-d232-4a4e-9be7-f888029f7320
+	else
+	  search --no-floppy --fs-uuid --set=root 1fd52207-d232-4a4e-9be7-f888029f7320
+	fi
+	linux16 /vmlinuz-3.10.0-957.el7.x86_64 root=/dev/mapper/OtusRoot-root ro crashkernel=auto rd.lvm.lv=OtusRoot/root rd.lvm.lv=OtusRoot/swap rhgb quiet LANG=ru_RU.UTF-8
+	initrd16 /initramfs-3.10.0-957.el7.x86_64.img
+}
+menuentry 'CentOS Linux (0-rescue-e8e5848646264bd18aa3991e9213ea2c) 7 (Core)' --class OtusRoot --class gnu-linux --class gnu --class os --unrestricted $menuentry_id_option 'gnulinux-0-rescue-e8e5848646264bd18aa3991e9213ea2c-advanced-6480e040-1b8a-4515-b29b-1ce5100fe284' {
+	load_video
+	insmod gzio
+	insmod part_msdos
+	insmod xfs
+	set root='hd0,msdos1'
+	if [ x$feature_platform_search_hint = xy ]; then
+	  search --no-floppy --fs-uuid --set=root --hint-bios=hd0,msdos1 --hint-efi=hd0,msdos1 --hint-baremetal=ahci0,msdos1 --hint='hd0,msdos1'  1fd52207-d232-4a4e-9be7-f888029f7320
+	else
+	  search --no-floppy --fs-uuid --set=root 1fd52207-d232-4a4e-9be7-f888029f7320
+	fi
+	linux16 /vmlinuz-0-rescue-e8e5848646264bd18aa3991e9213ea2c root=/dev/mapper/OtusRoot-root ro crashkernel=auto rd.lvm.lv=OtusRoot/root rd.lvm.lv=OtusRoot/swap rhgb quiet
+	initrd16 /initramfs-0-rescue-e8e5848646264bd18aa3991e9213ea2c.img
+}
+
+### END /etc/grub.d/10_linux ###
+
+### BEGIN /etc/grub.d/20_linux_xen ###
+### END /etc/grub.d/20_linux_xen ###
+
+### BEGIN /etc/grub.d/20_ppc_terminfo ###
+### END /etc/grub.d/20_ppc_terminfo ###
+
+### BEGIN /etc/grub.d/30_os-prober ###
+### END /etc/grub.d/30_os-prober ###
+
+### BEGIN /etc/grub.d/40_custom ###
+# This file provides an easy way to add custom menu entries.  Simply type the
+# menu entries you want to add after this comment.  Be careful not to change
+# the 'exec tail' line above.
+### END /etc/grub.d/40_custom ###
+
+### BEGIN /etc/grub.d/41_custom ###
+if [ -f  ${config_directory}/custom.cfg ]; then
+  source ${config_directory}/custom.cfg
+elif [ -z "${config_directory}" -a -f  $prefix/custom.cfg ]; then
+  source $prefix/custom.cfg;
+fi
+### END /etc/grub.d/41_custom ###
+]0;root@node2:~[root@node2 ~]# 
+]0;root@node2:~[root@node2 ~]# 
+]0;root@node2:~[root@node2 ~]# sed 's/centos/OtusRoot/g' /boot/grub2/grub.cfg[1P /boot/grub2/grub.cfg[1P /boot/grub2/grub.cfg[1P /boot/grub2/grub.cfg[1P /boot/grub2/grub.cfg[1P /boot/grub2/grub.cfg[1P /boot/grub2/grub.cfg[1P /boot/grub2/grub.cfg[1P /boot/grub2/grub.cfg[1P /boot/grub2/grub.cfg[1P /boot/grub2/grub.cfg[1P /boot/grub2/grub.cfg[1P /boot/grub2/grub.cfg[C[1P[1P[1P[1P[1P[1P[1P[1@g[1@r[1@e[1@p[1@ 
+menuentry 'CentOS Linux (3.10.0-957.el7.x86_64) 7 (Core)' --class [01;31m[Kcentos[m[K --class gnu-linux --class gnu --class os --unrestricted $menuentry_id_option 'gnulinux-3.10.0-957.el7.x86_64-advanced-6480e040-1b8a-4515-b29b-1ce5100fe284' {
+	linux16 /vmlinuz-3.10.0-957.el7.x86_64 root=/dev/mapper/[01;31m[Kcentos[m[K-root ro crashkernel=auto rd.lvm.lv=[01;31m[Kcentos[m[K/root rd.lvm.lv=[01;31m[Kcentos[m[K/swap rhgb quiet LANG=ru_RU.UTF-8
+menuentry 'CentOS Linux (0-rescue-e8e5848646264bd18aa3991e9213ea2c) 7 (Core)' --class [01;31m[Kcentos[m[K --class gnu-linux --class gnu --class os --unrestricted $menuentry_id_option 'gnulinux-0-rescue-e8e5848646264bd18aa3991e9213ea2c-advanced-6480e040-1b8a-4515-b29b-1ce5100fe284' {
+	linux16 /vmlinuz-0-rescue-e8e5848646264bd18aa3991e9213ea2c root=/dev/mapper/[01;31m[Kcentos[m[K-root ro crashkernel=auto rd.lvm.lv=[01;31m[Kcentos[m[K/root rd.lvm.lv=[01;31m[Kcentos[m[K/swap rhgb quiet
+]0;root@node2:~[root@node2 ~]# 
+]0;root@node2:~[root@node2 ~]# grep centos /boot/grub2/grub.cfg[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[14@sed 's/centos/OtusRoot/g'[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C -i
+]0;root@node2:~[root@node2 ~]# mkinitrd -f -v /boot/initramfs-$(uname -r).img $(uname -r)
+Executing: /usr/sbin/dracut -f -v /boot/initramfs-3.10.0-957.el7.x86_64.img 3.10.0-957.el7.x86_64
+dracut module 'modsign' will not be installed, because command 'keyctl' could not be found!
+dracut module 'busybox' will not be installed, because command 'busybox' could not be found!
+dracut module 'crypt' will not be installed, because command 'cryptsetup' could not be found!
+dracut module 'dmraid' will not be installed, because command 'dmraid' could not be found!
+dracut module 'dmsquash-live-ntfs' will not be installed, because command 'ntfs-3g' could not be found!
+dracut module 'mdraid' will not be installed, because command 'mdadm' could not be found!
+dracut module 'multipath' will not be installed, because command 'multipath' could not be found!
+dracut module 'cifs' will not be installed, because command 'mount.cifs' could not be found!
+dracut module 'iscsi' will not be installed, because command 'iscsistart' could not be found!
+dracut module 'iscsi' will not be installed, because command 'iscsi-iname' could not be found!
+95nfs: Could not find any command of 'rpcbind portmap'!
+dracut module 'modsign' will not be installed, because command 'keyctl' could not be found!
+dracut module 'busybox' will not be installed, because command 'busybox' could not be found!
+dracut module 'crypt' will not be installed, because command 'cryptsetup' could not be found!
+dracut module 'dmraid' will not be installed, because com

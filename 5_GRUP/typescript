@@ -1,0 +1,897 @@
+Скрипт запущен Вт 14 май 2019 23:23:24
+]0;root@node2:~[?1034h[root@node2 ~]# cd  /usr/lib/dracut/modules.d/
+]0;root@node2:/usr/lib/dracut/modules.d[root@node2 modules.d]# ls
+[0m[01;34m00bash[0m               [01;34m90btrfs[0m               [01;34m95dasd[0m          [01;34m95znet[0m
+[01;34m00systemd-bootchart[0m  [01;34m90crypt[0m               [01;34m95dasd_mod[0m      [01;34m97biosdevname[0m
+[01;34m03modsign[0m            [01;34m90dm[0m                  [01;34m95debug[0m         [01;34m98ecryptfs[0m
+[01;34m03rescue[0m             [01;34m90dmraid[0m              [01;34m95fcoe[0m          [01;34m98pollcdrom[0m
+[01;34m04watchdog[0m           [01;34m90dmsquash-live[0m       [01;34m95fcoe-uefi[0m     [01;34m98selinux[0m
+[01;34m05busybox[0m            [01;34m90dmsquash-live-ntfs[0m  [01;34m95fstab-sys[0m     [01;34m98syslog[0m
+[01;34m05nss-softokn[0m        [01;34m90kernel-modules[0m      [01;34m95iscsi[0m         [01;34m98systemd[0m
+[01;34m10i18n[0m               [01;34m90livenet[0m             [01;34m95nbd[0m           [01;34m98usrmount[0m
+[01;34m30convertfs[0m          [01;34m90lvm[0m                 [01;34m95nfs[0m           [01;34m99base[0m
+[01;34m40network[0m            [01;34m90mdraid[0m              [01;34m95resume[0m        [01;34m99fs-lib[0m
+[01;34m45ifcfg[0m              [01;34m90multipath[0m           [01;34m95rootfs-block[0m  [01;34m99img-lib[0m
+[01;34m45url-lib[0m            [01;34m90qemu[0m                [01;34m95ssh-client[0m    [01;34m99kdumpbase[0m
+[01;34m50drm[0m                [01;34m90qemu-net[0m            [01;34m95terminfo[0m      [01;34m99microcode_ctl-fw_dir_override[0m
+[01;34m50plymouth[0m           [01;34m91crypt-gpg[0m           [01;34m95udev-rules[0m    [01;34m99shutdown[0m
+[01;34m80cms[0m                [01;34m91crypt-loop[0m          [01;34m95virtfs[0m        [01;34m99uefi-lib[0m
+[01;34m90bcache[0m             [01;34m95cifs[0m                [01;34m95zfcp[0m
+]0;root@node2:/usr/lib/dracut/modules.d[root@node2 modules.d]# mkdir  01test
+]0;root@node2:/usr/lib/dracut/modules.d[root@node2 modules.d]# ls 01*
+]0;root@node2:/usr/lib/dracut/modules.d[root@node2 modules.d]# ls 01*[C 01*- 01*l 01*
+итого 0
+]0;root@node2:/usr/lib/dracut/modules.d[root@node2 modules.d]# ls -l 01*[Ktest/
+итого 0
+]0;root@node2:/usr/lib/dracut/modules.d[root@node2 modules.d]# ls -l 01test/[K[K[K[K[K[K[K[K[Kd 01*
+[0m[01;34m01test[0m
+]0;root@node2:/usr/lib/dracut/modules.d[root@node2 modules.d]# ls -d 01*[1P*
+[0m[01;34m00bash[0m  [01;34m00systemd-bootchart[0m  [01;34m01test[0m  [01;34m03modsign[0m  [01;34m03rescue[0m  [01;34m04watchdog[0m  [01;34m05busybox[0m  [01;34m05nss-softokn[0m
+]0;root@node2:/usr/lib/dracut/modules.d[root@node2 modules.d]# mc /root/module_setup.sh [1P[1@v[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C01test/
+]0;root@node2:/usr/lib/dracut/modules.d[root@node2 modules.d]# mv /root/module_setup.sh 01test/[1P 01test/[1P 01test/[1P 01test/[1P 01test/[1P 01test/[1P 01test/[1P 01test/[1P 01test/[1P 01test/[1P 01test/[1P 01test/[1P 01test/[1P 01test/[1P 01test/[1P 01test/t 01test/e 01test/st.sh 01test/
+]0;root@node2:/usr/lib/dracut/modules.d[root@node2 modules.d]#  mkinitrd -f -v /boot/initramfs-$(uname -r).img $(uname -r)[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kdru[Kacut -h
+Usage: /usr/sbin/dracut [OPTION]... [<initramfs> [<kernel-version>]]
+
+Version: 033-554.el7
+
+Creates initial ramdisk images for preloading modules
+
+  --kver [VERSION]      Set kernel version to [VERSION].
+  -f, --force           Overwrite existing initramfs file.
+  -a, --add [LIST]      Add a space-separated list of dracut modules.
+  --rebuild         Append arguments to those of existing image and rebuild
+  -m, --modules [LIST]  Specify a space-separated list of dracut modules to
+                         call when building the initramfs. Modules are located
+                         in /usr/lib/dracut/modules.d.
+  -o, --omit [LIST]     Omit a space-separated list of dracut modules.
+  --force-add [LIST]    Force to add a space-separated list of dracut modules
+                         to the default set of modules, when -H is specified.
+  -d, --drivers [LIST]  Specify a space-separated list of kernel modules to
+                         exclusively include in the initramfs.
+  --add-drivers [LIST]  Specify a space-separated list of kernel
+                         modules to add to the initramfs.
+  --force-drivers [LIST] Specify a space-separated list of kernel
+                         modules to add to the initramfs and make sure they
+                         are tried to be loaded via modprobe same as passing
+                         rd.driver.pre=DRIVER kernel parameter.
+  --omit-drivers [LIST] Specify a space-separated list of kernel
+                         modules not to add to the initramfs.
+  --filesystems [LIST]  Specify a space-separated list of kernel filesystem
+                         modules to exclusively include in the generic
+                         initramfs.
+  -k, --kmoddir [DIR]   Specify the directory, where to look for kernel
+                         modules
+  --fwdir [DIR]         Specify additional directories, where to look for
+                         firmwares, separated by :
+  --kernel-only         Only install kernel drivers and firmware files
+  --no-kernel           Do not install kernel drivers and firmware files
+  --print-cmdline       Print the kernel command line for the given disk layout
+  --early-microcode     Combine early microcode with ramdisk
+  --no-early-microcode  Do not combine early microcode with ramdisk
+  --kernel-cmdline [PARAMETERS] Specify default kernel command line parameters
+  --strip               Strip binaries in the initramfs
+  --nostrip             Do not strip binaries in the initramfs
+  --prelink             Prelink binaries in the initramfs
+  --noprelink           Do not prelink binaries in the initramfs
+  --hardlink            Hardlink files in the initramfs
+  --nohardlink          Do not hardlink files in the initramfs
+  --prefix [DIR]        Prefix initramfs files with [DIR]
+  --noprefix            Do not prefix initramfs files
+  --mdadmconf           Include local /etc/mdadm.conf
+  --nomdadmconf         Do not include local /etc/mdadm.conf
+  --lvmconf             Include local /etc/lvm/lvm.conf
+  --nolvmconf           Do not include local /etc/lvm/lvm.conf
+  --fscks [LIST]        Add a space-separated list of fsck helpers.
+  --nofscks             Inhibit installation of any fsck helpers.
+  --ro-mnt              Mount / and /usr read-only by default.
+  -h, --help            This message
+  --debug               Output debug information of the build process
+  --profile             Output profile information of the build process
+  -L, --stdlog [0-6]    Specify logging level (to standard error)
+                         0 - suppress any messages
+                         1 - only fatal errors
+                         2 - all errors
+                         3 - warnings
+                         4 - info
+                         5 - debug info (here starts lots of output)
+                         6 - trace info (and even more)
+  -v, --verbose         Increase verbosity level
+  -q, --quiet           Decrease verbosity level
+  -c, --conf [FILE]     Specify configuration file to use.
+                         Default: /etc/dracut.conf
+  --confdir [DIR]       Specify configuration directory to use *.conf files
+                         from. Default: /etc/dracut.conf.d
+  --tmpdir [DIR]        Temporary directory to be used instead of default
+                         /var/tmp.
+  -l, --local           Local mode. Use modules from the current working
+                         directory instead of the system-wide installed in
+                         /usr/lib/dracut/modules.d.
+                         Useful when running dracut from a git checkout.
+  -H, --hostonly        Host-Only mode: Install only what is needed for
+                        booting the local host instead of a generic host.
+  -N, --no-hostonly     Disables Host-Only mode
+  --hostonly-mode <mode>
+                        Specify the hostonly mode to use. <mode> could be
+                        one of "sloppy" or "strict". "sloppy" mode is used
+                        by default.
+                        In "sloppy" hostonly mode, extra drivers and modules
+                        will be installed, so minor hardware change won't make
+                        the image unbootable (eg. changed keyboard), and the
+                        image is still portable among similar hosts.
+                        With "strict" mode enabled, anything not necessary
+                        for booting the local host in its current state will
+                        not be included, and modules may do some extra job
+                        to save more space. Minor change of hardware or
+                        environment could make the image unbootable.
+                        DO NOT use "strict" mode unless you know what you
+                        are doing.
+  --hostonly-cmdline    Store kernel command line arguments needed
+                        in the initramfs
+  --no-hostonly-cmdline Do not store kernel command line arguments needed
+                        in the initramfs
+  --no-hostonly-default-device
+                        Do not generate implicit host devices like root,
+                        swap, fstab, etc. Use "--mount" or "--add-device"
+                        to explicitly add devices as needed.
+  --hostonly-i18n       Install only needed keyboard and font files according
+                        to the host configuration (default).
+  --no-hostonly-i18n    Install all keyboard and font files available.
+  --persistent-policy [POLICY]
+                        Use [POLICY] to address disks and partitions.
+                        POLICY can be any directory name found in /dev/disk.
+                        E.g. "by-uuid", "by-label"
+  --fstab               Use /etc/fstab to determine the root device.
+  --add-fstab [FILE]    Add file to the initramfs fstab
+  --mount "[DEV] [MP] [FSTYPE] [FSOPTS]"
+                        Mount device [DEV] on mountpoint [MP] with filesystem
+                        [FSTYPE] and options [FSOPTS] in the initramfs
+  --add-device "[DEV]"  Bring up [DEV] in initramfs
+  -i, --include [SOURCE] [TARGET]
+                        Include the files in the SOURCE directory into the
+                         Target directory in the final initramfs.
+                        If SOURCE is a file, it will be installed to TARGET
+                         in the final initramfs.
+  -I, --install [LIST]  Install the space separated list of files into the
+                         initramfs.
+  --install-optional [LIST]  Install the space separated list of files into the
+                         initramfs, if they exist.
+  --gzip                Compress the generated initramfs using gzip.
+                         This will be done by default, unless another
+                         compression option or --no-compress is passed.
+  --bzip2               Compress the generated initramfs using bzip2.
+                         Make sure your kernel has bzip2 decompression support
+                         compiled in, otherwise you will not be able to boot.
+  --lzma                Compress the generated initramfs using lzma.
+                         Make sure your kernel has lzma support compiled in,
+                         otherwise you will not be able to boot.
+  --xz                  Compress the generated initramfs using xz.
+                         Make sure that your kernel has xz support compiled
+                         in, otherwise you will not be able to boot.
+  --lzo                  Compress the generated initramfs using lzop.
+                         Make sure that your kernel has lzo support compiled
+                         in, otherwise you will not be able to boot.
+  --lz4                  Compress the generated initramfs using lz4.
+                         Make sure that your kernel has lz4 support compiled
+                         in, otherwise you will not be able to boot.
+  --compress [COMPRESSION] Compress the generated initramfs with the
+                         passed compression program.  Make sure your kernel
+                         knows how to decompress the generated initramfs,
+                         otherwise you will not be able to boot.
+  --no-compress         Do not compress the generated initramfs.  This will
+                         override any other compression options.
+  --list-modules        List all available dracut modules.
+  -M, --show-modules    Print included module's name to standard output during
+                         build.
+  --keep                Keep the temporary initramfs for debugging purposes
+  --printsize           Print out the module install size
+  --sshkey [SSHKEY]     Add ssh key to initramfs (use with ssh-client module)
+  --logfile [FILE]      Logfile to use (overrides configuration setting)
+
+If [LIST] has multiple arguments, then you have to put these in quotes.
+
+For example:
+
+    # dracut --add-drivers "module1 module2"  ...
+
+]0;root@node2:/usr/lib/dracut/modules.d[root@node2 modules.d]# dracut -h[Kv -F[Kf
+Executing: /usr/sbin/dracut -v -f
+dracut module 'modsign' will not be installed, because command 'keyctl' could not be found!
+dracut module 'busybox' will not be installed, because command 'busybox' could not be found!
+dracut module 'crypt' will not be installed, because command 'cryptsetup' could not be found!
+dracut module 'dmraid' will not be installed, because command 'dmraid' could not be found!
+dracut module 'dmsquash-live-ntfs' will not be installed, because command 'ntfs-3g' could not be found!
+dracut module 'mdraid' will not be installed, because command 'mdadm' could not be found!
+dracut module 'multipath' will not be installed, because command 'multipath' could not be found!
+dracut module 'cifs' will not be installed, because command 'mount.cifs' could not be found!
+dracut module 'iscsi' will not be installed, because command 'iscsistart' could not be found!
+dracut module 'iscsi' will not be installed, because command 'iscsi-iname' could not be found!
+95nfs: Could not find any command of 'rpcbind portmap'!
+dracut module 'modsign' will not be installed, because command 'keyctl' could not be found!
+dracut module 'busybox' will not be installed, because command 'busybox' could not be found!
+dracut module 'crypt' will not be installed, because command 'cryptsetup' could not be found!
+dracut module 'dmraid' will not be installed, because command 'dmraid' could not be found!
+dracut module 'dmsquash-live-ntfs' will not be installed, because command 'ntfs-3g' could not be found!
+dracut module 'mdraid' will not be installed, because command 'mdadm' could not be found!
+dracut module 'multipath' will not be installed, because command 'multipath' could not be found!
+dracut module 'cifs' will not be installed, because command 'mount.cifs' could not be found!
+dracut module 'iscsi' will not be installed, because command 'iscsistart' could not be found!
+dracut module 'iscsi' will not be installed, because command 'iscsi-iname' could not be found!
+95nfs: Could not find any command of 'rpcbind portmap'!
+*** Including module: bash ***
+*** Including module: nss-softokn ***
+*** Including module: i18n ***
+*** Including module: network ***
+*** Including module: ifcfg ***
+*** Including module: drm ***
+*** Including module: plymouth ***
+*** Including module: dm ***
+Skipping udev rule: 64-device-mapper.rules
+Skipping udev rule: 60-persistent-storage-dm.rules
+Skipping udev rule: 55-dm.rules
+*** Including module: kernel-modules ***
+*** Including module: lvm ***
+Skipping udev rule: 64-device-mapper.rules
+Skipping udev rule: 56-lvm.rules
+Skipping udev rule: 60-persistent-storage-lvm.rules
+*** Including module: qemu ***
+*** Including module: resume ***
+*** Including module: rootfs-block ***
+*** Including module: terminfo ***
+*** Including module: udev-rules ***
+Skipping udev rule: 40-redhat-cpu-hotplug.rules
+Skipping udev rule: 91-permissions.rules
+*** Including module: biosdevname ***
+*** Including module: systemd ***
+*** Including module: usrmount ***
+*** Including module: base ***
+*** Including module: fs-lib ***
+*** Including module: microcode_ctl-fw_dir_override ***
+  microcode_ctl module: mangling fw_dir
+    microcode_ctl: reset fw_dir to "/lib/firmware/updates /lib/firmware"
+    microcode_ctl: processing data directory  "/usr/share/microcode_ctl/ucode_with_caveats/intel"...
+intel: model '', path ' intel-ucode/*', kvers ''
+intel: blacklist ''
+    microcode_ctl: intel: Host-Only mode is enabled and "intel-ucode/06-8e-0a" matches "intel-ucode/*"
+      microcode_ctl: intel: caveats check for kernel version "3.10.0-957.el7.x86_64" passed, adding "/usr/share/microcode_ctl/ucode_with_caveats/intel" to fw_dir variable
+    microcode_ctl: processing data directory  "/usr/share/microcode_ctl/ucode_with_caveats/intel-06-4f-01"...
+intel-06-4f-01: model 'GenuineIntel 06-4f-01', path ' intel-ucode/06-4f-01', kvers ' 4.17.0 3.10.0-894 3.10.0-862.6.1 3.10.0-693.35.1 3.10.0-514.52.1 3.10.0-327.70.1 2.6.32-754.1.1 2.6.32-573.58.1 2.6.32-504.71.1 2.6.32-431.90.1 2.6.32-358.90.1'
+intel-06-4f-01: blacklist ''
+intel-06-4f-01: caveat is disabled in configuration
+    microcode_ctl: kernel version "3.10.0-957.el7.x86_64" failed early load check for "intel-06-4f-01", skipping
+    microcode_ctl: final fw_dir: "/usr/share/microcode_ctl/ucode_with_caveats/intel /lib/firmware/updates /lib/firmware"
+*** Including module: shutdown ***
+*** Including modules done ***
+*** Installing kernel module dependencies and firmware ***
+*** Installing kernel module dependencies and firmware done ***
+*** Resolving executable dependencies ***
+*** Resolving executable dependencies done***
+*** Hardlinking files ***
+*** Hardlinking files done ***
+*** Stripping files ***
+*** Stripping files done ***
+*** Generating early-microcode cpio image contents ***
+*** Constructing GenuineIntel.bin ****
+*** Constructing GenuineIntel.bin ****
+*** Store current command line parameters ***
+*** Creating image file ***
+*** Creating microcode section ***
+*** Created microcode section ***
+*** Creating image file done ***
+*** Creating initramfs image file '/boot/initramfs-3.10.0-957.el7.x86_64.img' done ***
+]0;root@node2:/usr/lib/dracut/modules.d[root@node2 modules.d]#  lsinitrd -m /boot/initramfs-$(uname -r).img | grep test
+]0;root@node2:/usr/lib/dracut/modules.d[root@node2 modules.d]#  lsinitrd -m /boot/initramfs-$(uname -r).img | grep test
+]0;root@node2:/usr/lib/dracut/modules.d[root@node2 modules.d]#  lsinitrd -m /boot/initramfs-$(uname -r).img | grep test*
+]0;root@node2:/usr/lib/dracut/modules.d[root@node2 modules.d]#  mkinitrd -f -v /boot/initramfs-$(uname -r).img $(uname -r)
+Executing: /usr/sbin/dracut -f -v /boot/initramfs-3.10.0-957.el7.x86_64.img 3.10.0-957.el7.x86_64
+dracut module 'modsign' will not be installed, because command 'keyctl' could not be found!
+dracut module 'busybox' will not be installed, because command 'busybox' could not be found!
+dracut module 'crypt' will not be installed, because command 'cryptsetup' could not be found!
+dracut module 'dmraid' will not be installed, because command 'dmraid' could not be found!
+dracut module 'dmsquash-live-ntfs' will not be installed, because command 'ntfs-3g' could not be found!
+dracut module 'mdraid' will not be installed, because command 'mdadm' could not be found!
+dracut module 'multipath' will not be installed, because command 'multipath' could not be found!
+dracut module 'cifs' will not be installed, because command 'mount.cifs' could not be found!
+dracut module 'iscsi' will not be installed, because command 'iscsistart' could not be found!
+dracut module 'iscsi' will not be installed, because command 'iscsi-iname' could not be found!
+95nfs: Could not find any command of 'rpcbind portmap'!
+dracut module 'modsign' will not be installed, because command 'keyctl' could not be found!
+dracut module 'busybox' will not be installed, because command 'busybox' could not be found!
+dracut module 'crypt' will not be installed, because command 'cryptsetup' could not be found!
+dracut module 'dmraid' will not be installed, because command 'dmraid' could not be found!
+dracut module 'dmsquash-live-ntfs' will not be installed, because command 'ntfs-3g' could not be found!
+dracut module 'mdraid' will not be installed, because command 'mdadm' could not be found!
+dracut module 'multipath' will not be installed, because command 'multipath' could not be found!
+dracut module 'cifs' will not be installed, because command 'mount.cifs' could not be found!
+dracut module 'iscsi' will not be installed, because command 'iscsistart' could not be found!
+dracut module 'iscsi' will not be installed, because command 'iscsi-iname' could not be found!
+95nfs: Could not find any command of 'rpcbind portmap'!
+*** Including module: bash ***
+*** Including module: nss-softokn ***
+*** Including module: i18n ***
+*** Including module: network ***
+*** Including module: ifcfg ***
+*** Including module: drm ***
+*** Including module: plymouth ***
+*** Including module: dm ***
+Skipping udev rule: 64-device-mapper.rules
+Skipping udev rule: 60-persistent-storage-dm.rules
+Skipping udev rule: 55-dm.rules
+*** Including module: kernel-modules ***
+*** Including module: lvm ***
+Skipping udev rule: 64-device-mapper.rules
+Skipping udev rule: 56-lvm.rules
+Skipping udev rule: 60-persistent-storage-lvm.rules
+*** Including module: qemu ***
+*** Including module: resume ***
+*** Including module: rootfs-block ***
+*** Including module: terminfo ***
+*** Including module: udev-rules ***
+Skipping udev rule: 40-redhat-cpu-hotplug.rules
+Skipping udev rule: 91-permissions.rules
+*** Including module: biosdevname ***
+*** Including module: systemd ***
+*** Including module: usrmount ***
+*** Including module: base ***
+*** Including module: fs-lib ***
+*** Including module: microcode_ctl-fw_dir_override ***
+  microcode_ctl module: mangling fw_dir
+    microcode_ctl: reset fw_dir to "/lib/firmware/updates /lib/firmware"
+    microcode_ctl: processing data directory  "/usr/share/microcode_ctl/ucode_with_caveats/intel"...
+intel: model '', path ' intel-ucode/*', kvers ''
+intel: blacklist ''
+    microcode_ctl: intel: Host-Only mode is enabled and "intel-ucode/06-8e-0a" matches "intel-ucode/*"
+      microcode_ctl: intel: caveats check for kernel version "3.10.0-957.el7.x86_64" passed, adding "/usr/share/microcode_ctl/ucode_with_caveats/intel" to fw_dir variable
+    microcode_ctl: processing data directory  "/usr/share/microcode_ctl/ucode_with_caveats/intel-06-4f-01"...
+intel-06-4f-01: model 'GenuineIntel 06-4f-01', path ' intel-ucode/06-4f-01', kvers ' 4.17.0 3.10.0-894 3.10.0-862.6.1 3.10.0-693.35.1 3.10.0-514.52.1 3.10.0-327.70.1 2.6.32-754.1.1 2.6.32-573.58.1 2.6.32-504.71.1 2.6.32-431.90.1 2.6.32-358.90.1'
+intel-06-4f-01: blacklist ''
+intel-06-4f-01: caveat is disabled in configuration
+    microcode_ctl: kernel version "3.10.0-957.el7.x86_64" failed early load check for "intel-06-4f-01", skipping
+    microcode_ctl: final fw_dir: "/usr/share/microcode_ctl/ucode_with_caveats/intel /lib/firmware/updates /lib/firmware"
+*** Including module: shutdown ***
+*** Including modules done ***
+*** Installing kernel module dependencies and firmware ***
+*** Installing kernel module dependencies and firmware done ***
+*** Resolving executable dependencies ***
+*** Resolving executable dependencies done***
+*** Hardlinking files ***
+*** Hardlinking files done ***
+*** Stripping files ***
+*** Stripping files done ***
+*** Generating early-microcode cpio image contents ***
+*** Constructing GenuineIntel.bin ****
+*** Constructing GenuineIntel.bin ****
+*** Store current command line parameters ***
+*** Creating image file ***
+*** Creating microcode section ***
+*** Created microcode section ***
+*** Creating image file done ***
+*** Creating initramfs image file '/boot/initramfs-3.10.0-957.el7.x86_64.img' done ***
+]0;root@node2:/usr/lib/dracut/modules.d[root@node2 modules.d]#  mkinitrd -f -v /boot/initramfs-$(uname -r).img $(uname -r)[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[2Plsinitrd -m /boot/initramfs-$(uname -r).img | grep test*
+]0;root@node2:/usr/lib/dracut/modules.d[root@node2 modules.d]#  lsinitrd -m /boot/initramfs-$(uname -r).img | grep test*[K
+]0;root@node2:/usr/lib/dracut/modules.d[root@node2 modules.d]# ll
+итого 12
+drwxr-xr-x. 2 root root   29 янв 24 11:03 [0m[01;34m00bash[0m
+drwxr-xr-x. 2 root root   29 янв 24 11:03 [01;34m00systemd-bootchart[0m
+drwxr-xr-x. 2 root root   44 май 14 23:26 [01;34m01test[0m
+drwxr-xr-x. 2 root root   57 янв 24 11:03 [01;34m03modsign[0m
+drwxr-xr-x. 2 root root   29 янв 24 11:03 [01;34m03rescue[0m
+drwxr-xr-x. 2 root root   72 янв 24 11:03 [01;34m04watchdog[0m
+drwxr-xr-x. 2 root root   29 янв 24 11:03 [01;34m05busybox[0m
+drwxr-xr-x. 2 root root   29 янв 24 11:02 [01;34m05nss-softokn[0m
+drwxr-xr-x. 2 root root  111 янв 24 11:03 [01;34m10i18n[0m
+drwxr-xr-x. 2 root root   72 янв 24 11:03 [01;34m30convertfs[0m
+drwxr-xr-x. 2 root root 4096 янв 24 11:03 [01;34m40network[0m
+drwxr-xr-x. 2 root root   51 янв 24 11:03 [01;34m45ifcfg[0m
+drwxr-xr-x. 2 root root   47 янв 24 11:03 [01;34m45url-lib[0m
+drwxr-xr-x. 2 root root   29 янв 24 11:03 [01;34m50drm[0m
+drwxr-xr-x. 2 root root  150 янв 24 11:03 [01;34m50plymouth[0m
+drwxr-xr-x. 2 root root   92 янв 24 11:03 [01;34m80cms[0m
+drwxr-xr-x. 2 root root   29 янв 24 11:03 [01;34m90bcache[0m
+drwxr-xr-x. 2 root root  129 янв 24 11:03 [01;34m90btrfs[0m
+drwxr-xr-x. 2 root root  195 янв 24 11:03 [01;34m90crypt[0m
+drwxr-xr-x. 2 root root  130 янв 24 11:03 [01;34m90dm[0m
+drwxr-xr-x. 2 root root   93 янв 24 11:03 [01;34m90dmraid[0m
+drwxr-xr-x. 2 root root  258 янв 24 11:03 [01;34m90dmsquash-live[0m
+drwxr-xr-x. 2 root root   29 янв 24 11:03 [01;34m90dmsquash-live-ntfs[0m
+drwxr-xr-x. 2 root root   73 янв 24 11:03 [01;34m90kernel-modules[0m
+drwxr-xr-x. 2 root root  102 янв 24 11:03 [01;34m90livenet[0m
+drwxr-xr-x. 2 root root   88 янв 24 11:03 [01;34m90lvm[0m
+drwxr-xr-x. 2 root root 4096 янв 24 11:03 [01;34m90mdraid[0m
+drwxr-xr-x. 2 root root  110 янв 24 11:03 [01;34m90multipath[0m
+drwxr-xr-x. 2 root root   29 янв 24 11:03 [01;34m90qemu[0m
+drwxr-xr-x. 2 root root   29 янв 24 11:03 [01;34m90qemu-net[0m
+drwxr-xr-x. 2 root root   53 янв 24 11:03 [01;34m91crypt-gpg[0m
+drwxr-xr-x. 2 root root   54 янв 24 11:03 [01;34m91crypt-loop[0m
+drwxr-xr-x. 2 root root   92 янв 24 11:03 [01;34m95cifs[0m
+drwxr-xr-x. 2 root root   50 янв 24 11:03 [01;34m95dasd[0m
+drwxr-xr-x. 2 root root   54 янв 24 11:03 [01;34m95dasd_mod[0m
+drwxr-xr-x. 2 root root   29 янв 24 11:03 [01;34m95debug[0m
+drwxr-xr-x. 2 root root  151 янв 24 11:03 [01;34m95fcoe[0m
+drwxr-xr-x. 2 root root   54 янв 24 11:03 [01;34m95fcoe-uefi[0m
+drwxr-xr-x. 2 root root   49 янв 24 11:03 [01;34m95fstab-sys[0m
+drwxr-xr-x. 2 root root  119 янв 24 11:03 [01;34m95iscsi[0m
+drwxr-xr-x. 2 root root   71 янв 24 11:03 [01;34m95nbd[0m
+drwxr-xr-x. 2 root root  139 янв 24 11:03 [01;34m95nfs[0m
+drwxr-xr-x. 2 root root   69 янв 24 11:03 [01;34m95resume[0m
+drwxr-xr-x. 2 root root  120 янв 24 11:03 [01;34m95rootfs-block[0m
+drwxr-xr-x. 2 root root   29 янв 24 11:03 [01;34m95ssh-client[0m
+drwxr-xr-x. 2 root root   29 янв 24 11:03 [01;34m95terminfo[0m
+drwxr-xr-x. 2 root root  122 янв 24 11:03 [01;34m95udev-rules[0m
+drwxr-xr-x. 2 root root  102 янв 24 11:03 [01;34m95virtfs[0m
+drwxr-xr-x. 2 root root   50 янв 24 11:03 [01;34m95zfcp[0m
+drwxr-xr-x. 2 root root   49 янв 24 11:03 [01;34m95znet[0m
+drwxr-xr-x. 2 root root   57 янв 24 11:03 [01;34m97biosdevname[0m
+drwxr-xr-x. 2 root root   68 янв 24 11:03 [01;34m98ecryptfs[0m
+drwxr-xr-x. 2 root root   49 янв 24 11:03 [01;34m98pollcdrom[0m
+drwxr-xr-x. 2 root root   58 янв 24 11:03 [01;34m98selinux[0m
+drwxr-xr-x. 2 root root  191 янв 24 11:03 [01;34m98syslog[0m
+drwxr-xr-x. 2 root root 4096 янв 24 11:03 [01;34m98systemd[0m
+drwxr-xr-x. 2 root root   49 янв 24 11:03 [01;34m98usrmount[0m
+drwxr-xr-x. 2 root root  173 янв 24 11:03 [01;34m99base[0m
+drwxr-xr-x. 2 root root   46 янв 24 11:03 [01;34m99fs-lib[0m
+drwxr-xr-x. 2 root root   47 янв 24 11:03 [01;34m99img-lib[0m
+drwxr-xr-x. 2 root root  227 янв 24 11:03 [01;34m99kdumpbase[0m
+drwxr-xr-x. 2 root root   29 янв 24 11:03 [01;34m99microcode_ctl-fw_dir_override[0m
+drwxr-xr-x. 2 root root   48 янв 24 11:03 [01;34m99shutdown[0m
+drwxr-xr-x. 2 root root   48 янв 24 11:03 [01;34m99uefi-lib[0m
+]0;root@node2:/usr/lib/dracut/modules.d[root@node2 modules.d]# cd 01test/
+]0;root@node2:/usr/lib/dracut/modules.d/01test[root@node2 01test]# ll
+итого 8
+-rw-r--r--. 1 root root 137 май 14 23:24 module_setup.sh
+-rw-r--r--. 1 root root 349 май 14 23:24 test.sh
+]0;root@node2:/usr/lib/dracut/modules.d/01test[root@node2 01test]# chmod _[K=[K+x *
+]0;root@node2:/usr/lib/dracut/modules.d/01test[root@node2 01test]# ll
+итого 8
+-rwxr-xr-x. 1 root root 137 май 14 23:24 [0m[01;32mmodule_setup.sh[0m
+-rwxr-xr-x. 1 root root 349 май 14 23:24 [01;32mtest.sh[0m
+]0;root@node2:/usr/lib/dracut/modules.d/01test[root@node2 01test]# llchmod +x *ll[Kcd 01test/ll[K lsinitrd -m /boot/initramfs-$(uname -r).img | grep test*[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cmkinitrd -f -v /boot/initramfs-$(uname -r).img $(uname -r)
+Executing: /usr/sbin/dracut -f -v /boot/initramfs-3.10.0-957.el7.x86_64.img 3.10.0-957.el7.x86_64
+dracut module 'modsign' will not be installed, because command 'keyctl' could not be found!
+dracut module 'busybox' will not be installed, because command 'busybox' could not be found!
+dracut module 'crypt' will not be installed, because command 'cryptsetup' could not be found!
+dracut module 'dmraid' will not be installed, because command 'dmraid' could not be found!
+dracut module 'dmsquash-live-ntfs' will not be installed, because command 'ntfs-3g' could not be found!
+dracut module 'mdraid' will not be installed, because command 'mdadm' could not be found!
+dracut module 'multipath' will not be installed, because command 'multipath' could not be found!
+dracut module 'cifs' will not be installed, because command 'mount.cifs' could not be found!
+dracut module 'iscsi' will not be installed, because command 'iscsistart' could not be found!
+dracut module 'iscsi' will not be installed, because command 'iscsi-iname' could not be found!
+95nfs: Could not find any command of 'rpcbind portmap'!
+dracut module 'modsign' will not be installed, because command 'keyctl' could not be found!
+dracut module 'busybox' will not be installed, because command 'busybox' could not be found!
+dracut module 'crypt' will not be installed, because command 'cryptsetup' could not be found!
+dracut module 'dmraid' will not be installed, because command 'dmraid' could not be found!
+dracut module 'dmsquash-live-ntfs' will not be installed, because command 'ntfs-3g' could not be found!
+dracut module 'mdraid' will not be installed, because command 'mdadm' could not be found!
+dracut module 'multipath' will not be installed, because command 'multipath' could not be found!
+dracut module 'cifs' will not be installed, because command 'mount.cifs' could not be found!
+dracut module 'iscsi' will not be installed, because command 'iscsistart' could not be found!
+dracut module 'iscsi' will not be installed, because command 'iscsi-iname' could not be found!
+95nfs: Could not find any command of 'rpcbind portmap'!
+*** Including module: bash ***
+*** Including module: nss-softokn ***
+*** Including module: i18n ***
+*** Including module: network ***
+*** Including module: ifcfg ***
+*** Including module: drm ***
+*** Including module: plymouth ***
+*** Including module: dm ***
+Skipping udev rule: 64-device-mapper.rules
+Skipping udev rule: 60-persistent-storage-dm.rules
+Skipping udev rule: 55-dm.rules
+*** Including module: kernel-modules ***
+*** Including module: lvm ***
+Skipping udev rule: 64-device-mapper.rules
+Skipping udev rule: 56-lvm.rules
+Skipping udev rule: 60-persistent-storage-lvm.rules
+*** Including module: qemu ***
+*** Including module: resume ***
+*** Including module: rootfs-block ***
+*** Including module: terminfo ***
+*** Including module: udev-rules ***
+Skipping udev rule: 40-redhat-cpu-hotplug.rules
+Skipping udev rule: 91-permissions.rules
+*** Including module: biosdevname ***
+*** Including module: systemd ***
+*** Including module: usrmount ***
+*** Including module: base ***
+*** Including module: fs-lib ***
+*** Including module: microcode_ctl-fw_dir_override ***
+  microcode_ctl module: mangling fw_dir
+    microcode_ctl: reset fw_dir to "/lib/firmware/updates /lib/firmware"
+    microcode_ctl: processing data directory  "/usr/share/microcode_ctl/ucode_with_caveats/intel"...
+intel: model '', path ' intel-ucode/*', kvers ''
+intel: blacklist ''
+    microcode_ctl: intel: Host-Only mode is enabled and "intel-ucode/06-8e-0a" matches "intel-ucode/*"
+      microcode_ctl: intel: caveats check for kernel version "3.10.0-957.el7.x86_64" passed, adding "/usr/share/microcode_ctl/ucode_with_caveats/intel" to fw_dir variable
+    microcode_ctl: processing data directory  "/usr/share/microcode_ctl/ucode_with_caveats/intel-06-4f-01"...
+intel-06-4f-01: model 'GenuineIntel 06-4f-01', path ' intel-ucode/06-4f-01', kvers ' 4.17.0 3.10.0-894 3.10.0-862.6.1 3.10.0-693.35.1 3.10.0-514.52.1 3.10.0-327.70.1 2.6.32-754.1.1 2.6.32-573.58.1 2.6.32-504.71.1 2.6.32-431.90.1 2.6.32-358.90.1'
+intel-06-4f-01: blacklist ''
+intel-06-4f-01: caveat is disabled in configuration
+    microcode_ctl: kernel version "3.10.0-957.el7.x86_64" failed early load check for "intel-06-4f-01", skipping
+    microcode_ctl: final fw_dir: "/usr/share/microcode_ctl/ucode_with_caveats/intel /lib/firmware/updates /lib/firmware"
+*** Including module: shutdown ***
+*** Including modules done ***
+*** Installing kernel module dependencies and firmware ***
+*** Installing kernel module dependencies and firmware done ***
+*** Resolving executable dependencies ***
+*** Resolving executable dependencies done***
+*** Hardlinking files ***
+*** Hardlinking files done ***
+*** Stripping files ***
+*** Stripping files done ***
+*** Generating early-microcode cpio image contents ***
+*** Constructing GenuineIntel.bin ****
+*** Constructing GenuineIntel.bin ****
+*** Store current command line parameters ***
+*** Creating image file ***
+*** Creating microcode section ***
+*** Created microcode section ***
+*** Creating image file done ***
+*** Creating initramfs image file '/boot/initramfs-3.10.0-957.el7.x86_64.img' done ***
+]0;root@node2:/usr/lib/dracut/modules.d/01test[root@node2 01test]#  mkinitrd -f -v /boot/initramfs-$(uname -r).img $(uname -r)[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cll[Kchmod +x *ll[Kcd 01test/ll[K lsinitrd -m /boot/initramfs-$(uname -r).img | grep test
+]0;root@node2:/usr/lib/dracut/modules.d/01test[root@node2 01test]# 
+]0;root@node2:/usr/lib/dracut/modules.d/01test[root@node2 01test]#  lsinitrd -m /boot/initramfs-$(uname -r).img | grep test[K[K[K[K[K[K[K[K[K[K[K
+Image: /boot/initramfs-3.10.0-957.el7.x86_64.img: 21M
+========================================================================
+Early CPIO image
+========================================================================
+drwxr-xr-x   3 root     root            0 May 14 23:30 .
+-rw-r--r--   1 root     root            2 May 14 23:30 early_cpio
+drwxr-xr-x   3 root     root            0 May 14 23:30 kernel
+drwxr-xr-x   3 root     root            0 May 14 23:30 kernel/x86
+drwxr-xr-x   2 root     root            0 May 14 23:30 kernel/x86/microcode
+-rw-r--r--   1 root     root        98304 May 14 23:30 kernel/x86/microcode/GenuineIntel.bin
+========================================================================
+Version: dracut-033-554.el7
+
+dracut modules:
+bash
+nss-softokn
+i18n
+network
+ifcfg
+drm
+plymouth
+dm
+kernel-modules
+lvm
+qemu
+resume
+rootfs-block
+terminfo
+udev-rules
+biosdevname
+systemd
+usrmount
+base
+fs-lib
+microcode_ctl-fw_dir_override
+shutdown
+========================================================================
+]0;root@node2:/usr/lib/dracut/modules.d/01test[root@node2 01test]# ll
+итого 8
+-rwxr-xr-x. 1 root root 137 май 14 23:24 [0m[01;32mmodule_setup.sh[0m
+-rwxr-xr-x. 1 root root 349 май 14 23:24 [01;32mtest.sh[0m
+]0;root@node2:/usr/lib/dracut/modules.d/01test[root@node2 01test]# ll ../00
+00bash/              00systemd-bootchart/ 
+[root@node2 01test]# ll ../00bash/
+итого 4
+-rwxr-xr-x. 1 root root 414 ноя  2  2018 [0m[01;32mmodule-setup.sh[0m
+]0;root@node2:/usr/lib/dracut/modules.d/01test[root@node2 01test]# cat ../00bash/module-setup.sh
+#!/bin/bash
+# -*- mode: shell-script; indent-tabs-mode: nil; sh-basic-offset: 4; -*-
+# ex: ts=8 sw=4 sts=4 et filetype=sh
+
+check() {
+    require_binaries /bin/bash
+}
+
+depends() {
+    return 0
+}
+
+install() {
+    # If another shell is already installed, do not use bash
+    [[ -x $initdir/bin/sh ]] && return
+
+    # Prefer bash as /bin/sh if it is available.
+    inst /bin/bash && ln -sf bash "${initdir}/bin/sh"
+}
+
+]0;root@node2:/usr/lib/dracut/modules.d/01test[root@node2 01test]# cat module_setup.sh
+#!/bin/bash
+
+check() {
+    return 0
+}
+
+depends() {
+    return 0
+}
+
+install() {
+    inst_hook cleanup 00 "${moddir}/test.sh"
+}]0;root@node2:/usr/lib/dracut/modules.d/01test[root@node2 01test]# echo $$initdir
+3822initdir
+]0;root@node2:/usr/lib/dracut/modules.d/01test[root@node2 01test]# echo $$initdir[1Pinitdir
+
+]0;root@node2:/usr/lib/dracut/modules.d/01test[root@node2 01test]# initdir
+bash: initdir: команда не найдена
+]0;root@node2:/usr/lib/dracut/modules.d/01test[root@node2 01test]# initdirecho $initdir$initdir
+3822initdir
+]0;root@node2:/usr/lib/dracut/modules.d/01test[root@node2 01test]# ls ${moddir}/test.sh
+ls: невозможно получить доступ к /test.sh: Нет такого файла или каталога
+]0;root@node2:/usr/lib/dracut/modules.d/01test[root@node2 01test]# cd ..
+]0;root@node2:/usr/lib/dracut/modules.d[root@node2 modules.d]# grep -r moddir *
+[35m[K01test/module_setup.sh[m[K[36m[K:[m[K    inst_hook cleanup 00 "${[01;31m[Kmoddir[m[K}/test.sh"
+[35m[K03modsign/module-setup.sh[m[K[36m[K:[m[K    inst_hook pre-trigger 01 "$[01;31m[Kmoddir[m[K/load-modsign-keys.sh"
+[35m[K04watchdog/module-setup.sh[m[K[36m[K:[m[K        inst_hook cmdline   00 "$[01;31m[Kmoddir[m[K/watchdog.sh"
+[35m[K04watchdog/module-setup.sh[m[K[36m[K:[m[K        inst_hook cmdline   50 "$[01;31m[Kmoddir[m[K/watchdog.sh"
+[35m[K04watchdog/module-setup.sh[m[K[36m[K:[m[K        inst_hook pre-trigger 00 "$[01;31m[Kmoddir[m[K/watchdog.sh"
+[35m[K04watchdog/module-setup.sh[m[K[36m[K:[m[K        inst_hook initqueue 00 "$[01;31m[Kmoddir[m[K/watchdog.sh"
+[35m[K04watchdog/module-setup.sh[m[K[36m[K:[m[K        inst_hook mount     00 "$[01;31m[Kmoddir[m[K/watchdog.sh"
+[35m[K04watchdog/module-setup.sh[m[K[36m[K:[m[K        inst_hook mount     50 "$[01;31m[Kmoddir[m[K/watchdog.sh"
+[35m[K04watchdog/module-setup.sh[m[K[36m[K:[m[K        inst_hook mount     99 "$[01;31m[Kmoddir[m[K/watchdog.sh"
+[35m[K04watchdog/module-setup.sh[m[K[36m[K:[m[K        inst_hook pre-pivot 00 "$[01;31m[Kmoddir[m[K/watchdog.sh"
+[35m[K04watchdog/module-setup.sh[m[K[36m[K:[m[K        inst_hook pre-pivot 99 "$[01;31m[Kmoddir[m[K/watchdog.sh"
+[35m[K04watchdog/module-setup.sh[m[K[36m[K:[m[K        inst_hook cleanup   00 "$[01;31m[Kmoddir[m[K/watchdog.sh"
+[35m[K04watchdog/module-setup.sh[m[K[36m[K:[m[K        inst_hook cleanup   99 "$[01;31m[Kmoddir[m[K/watchdog.sh"
+[35m[K04watchdog/module-setup.sh[m[K[36m[K:[m[K    inst_hook emergency 02 "$[01;31m[Kmoddir[m[K/watchdog-stop.sh"
+[35m[K10i18n/module-setup.sh[m[K[36m[K:[m[K            inst ${[01;31m[Kmoddir[m[K}/console_init.sh /lib/udev/console_init
+[35m[K10i18n/module-setup.sh[m[K[36m[K:[m[K            inst_rules ${[01;31m[Kmoddir[m[K}/10-console.rules
+[35m[K10i18n/module-setup.sh[m[K[36m[K:[m[K            inst_hook cmdline 20 "${[01;31m[Kmoddir[m[K}/parse-i18n.sh"
+[35m[K30convertfs/module-setup.sh[m[K[36m[K:[m[K    inst_hook pre-pivot 99 "$[01;31m[Kmoddir[m[K/do-convertfs.sh"
+[35m[K30convertfs/module-setup.sh[m[K[36m[K:[m[K    inst_script "$[01;31m[Kmoddir[m[K/convertfs.sh" /usr/bin/convertfs
+[35m[K40network/module-setup.sh[m[K[36m[K:[m[K    inst_script "$[01;31m[Kmoddir[m[K/ifup.sh" "/sbin/ifup"
+[35m[K40network/module-setup.sh[m[K[36m[K:[m[K    inst_script "$[01;31m[Kmoddir[m[K/netroot.sh" "/sbin/netroot"
+[35m[K40network/module-setup.sh[m[K[36m[K:[m[K    inst_script "$[01;31m[Kmoddir[m[K/dhclient-script.sh" "/sbin/dhclient-script"
+[35m[K40network/module-setup.sh[m[K[36m[K:[m[K    inst_simple "$[01;31m[Kmoddir[m[K/net-lib.sh" "/lib/net-lib.sh"
+[35m[K40network/module-setup.sh[m[K[36m[K:[m[K    inst_simple "$[01;31m[Kmoddir[m[K/dhclient.conf" "/etc/dhclient.conf"
+[35m[K40network/module-setup.sh[m[K[36m[K:[m[K    inst_hook pre-udev 50 "$[01;31m[Kmoddir[m[K/ifname-genrules.sh"
+[35m[K40network/module-setup.sh[m[K[36m[K:[m[K    inst_hook pre-udev 60 "$[01;31m[Kmoddir[m[K/net-genrules.sh"
+[35m[K40network/module-setup.sh[m[K[36m[K:[m[K    inst_hook cmdline 91 "$[01;31m[Kmoddir[m[K/dhcp-root.sh"
+[35m[K40network/module-setup.sh[m[K[36m[K:[m[K    inst_hook cmdline 92 "$[01;31m[Kmoddir[m[K/parse-ibft.sh"
+[35m[K40network/module-setup.sh[m[K[36m[K:[m[K    inst_hook cmdline 95 "$[01;31m[Kmoddir[m[K/parse-vlan.sh"
+[35m[K40network/module-setup.sh[m[K[36m[K:[m[K    inst_hook cmdline 96 "$[01;31m[Kmoddir[m[K/parse-bond.sh"
+[35m[K40network/module-setup.sh[m[K[36m[K:[m[K    inst_hook cmdline 96 "$[01;31m[Kmoddir[m[K/parse-team.sh"
+[35m[K40network/module-setup.sh[m[K[36m[K:[m[K    inst_hook cmdline 97 "$[01;31m[Kmoddir[m[K/parse-bridge.sh"
+[35m[K40network/module-setup.sh[m[K[36m[K:[m[K    inst_hook cmdline 98 "$[01;31m[Kmoddir[m[K/parse-ip-opts.sh"
+[35m[K40network/module-setup.sh[m[K[36m[K:[m[K    inst_hook cmdline 99 "$[01;31m[Kmoddir[m[K/parse-ifname.sh"
+[35m[K40network/module-setup.sh[m[K[36m[K:[m[K    inst_hook cleanup 10 "$[01;31m[Kmoddir[m[K/kill-dhclient.sh"
+[35m[K45ifcfg/module-setup.sh[m[K[36m[K:[m[K    inst_hook pre-pivot 85 "$[01;31m[Kmoddir[m[K/write-ifcfg.sh"
+[35m[K45url-lib/module-setup.sh[m[K[36m[K:[m[K    inst_simple "$[01;31m[Kmoddir[m[K/url-lib.sh" "/lib/url-lib.sh"
+[35m[K50plymouth/module-setup.sh[m[K[36m[K:[m[K        . "$[01;31m[Kmoddir[m[K"/plymouth-populate-initrd.sh
+[35m[K50plymouth/module-setup.sh[m[K[36m[K:[m[K    inst_hook emergency 50 "$[01;31m[Kmoddir[m[K"/plymouth-emergency.sh
+[35m[K50plymouth/module-setup.sh[m[K[36m[K:[m[K        inst_hook pre-trigger 10 "$[01;31m[Kmoddir[m[K"/plymouth-pretrigger.sh
+[35m[K50plymouth/module-setup.sh[m[K[36m[K:[m[K        inst_hook pre-pivot 90 "$[01;31m[Kmoddir[m[K"/plymouth-newroot.sh
+[35m[K80cms/module-setup.sh[m[K[36m[K:[m[K    inst_hook pre-trigger 30 "$[01;31m[Kmoddir[m[K/cmssetup.sh"
+[35m[K80cms/module-setup.sh[m[K[36m[K:[m[K    inst_hook pre-pivot 95 "$[01;31m[Kmoddir[m[K/cms-write-ifcfg.sh"
+[35m[K80cms/module-setup.sh[m[K[36m[K:[m[K    inst_script "$[01;31m[Kmoddir[m[K/cmsifup.sh" /sbin/cmsifup
+[35m[K90btrfs/module-setup.sh[m[K[36m[K:[m[K        inst_rules "$[01;31m[Kmoddir[m[K/80-btrfs.rules"
+[35m[K90btrfs/module-setup.sh[m[K[36m[K:[m[K                inst_script "$[01;31m[Kmoddir[m[K/btrfs_device_ready.sh" /sbin/btrfs_finished ;;
+[35m[K90btrfs/module-setup.sh[m[K[36m[K:[m[K                inst_script "$[01;31m[Kmoddir[m[K/btrfs_finished.sh" /sbin/btrfs_finished ;;
+[35m[K90btrfs/module-setup.sh[m[K[36m[K:[m[K        inst_hook initqueue/timeout 10 "$[01;31m[Kmoddir[m[K/btrfs_timeout.sh"
+[35m[K90crypt/module-setup.sh[m[K[36m[K:[m[K    inst_script "$[01;31m[Kmoddir[m[K"/cryptroot-ask.sh /sbin/cryptroot-ask
+[35m[K90crypt/module-setup.sh[m[K[36m[K:[m[K    inst_script "$[01;31m[Kmoddir[m[K"/probe-keydev.sh /sbin/probe-keydev
+[35m[K90crypt/module-setup.sh[m[K[36m[K:[m[K    inst_hook cmdline 10 "$[01;31m[Kmoddir[m[K/parse-keydev.sh"
+[35m[K90crypt/module-setup.sh[m[K[36m[K:[m[K    inst_hook cmdline 30 "$[01;31m[Kmoddir[m[K/parse-crypt.sh"
+[35m[K90crypt/module-setup.sh[m[K[36m[K:[m[K        inst_hook cleanup 30 "$[01;31m[Kmoddir[m[K/crypt-cleanup.sh"
+[35m[K90crypt/module-setup.sh[m[K[36m[K:[m[K    inst_simple "$[01;31m[Kmoddir[m[K/crypt-lib.sh" "/lib/dracut-crypt-lib.sh"
+[35m[K90crypt/module-setup.sh[m[K[36m[K:[m[K    inst_script "$[01;31m[Kmoddir[m[K"/crypt-run-generator.sh /sbin/crypt-run-generator
+[35m[K90dm/module-setup.sh[m[K[36m[K:[m[K        inst_hook pre-udev 30 "$[01;31m[Kmoddir[m[K/dm-pre-udev.sh"
+[35m[K90dm/module-setup.sh[m[K[36m[K:[m[K    inst_rules "$[01;31m[Kmoddir[m[K/11-dm.rules"
+[35m[K90dm/module-setup.sh[m[K[36m[K:[m[K    inst_rules "$[01;31m[Kmoddir[m[K/59-persistent-storage-dm.rules"
+[35m[K90dm/module-setup.sh[m[K[36m[K:[m[K    inst_hook shutdown 30 "$[01;31m[Kmoddir[m[K/dm-shutdown.sh"
+[35m[K90dmraid/module-setup.sh[m[K[36m[K:[m[K    inst "$[01;31m[Kmoddir[m[K/dmraid.sh" /sbin/dmraid_scan
+[35m[K90dmraid/module-setup.sh[m[K[36m[K:[m[K    inst_rules "$[01;31m[Kmoddir[m[K/61-dmraid-imsm.rules"
+[35m[K90dmraid/module-setup.sh[m[K[36m[K:[m[K    #inst "$[01;31m[Kmoddir[m[K/dmraid-cleanup.sh" /sbin/dmraid-cleanup
+[35m[K90dmraid/module-setup.sh[m[K[36m[K:[m[K    inst_hook pre-trigger 30 "$[01;31m[Kmoddir[m[K/parse-dm.sh"
+[35m[K90dmsquash-live/module-setup.sh[m[K[36m[K:[m[K    inst_hook cmdline 30 "$[01;31m[Kmoddir[m[K/parse-dmsquash-live.sh"
+[35m[K90dmsquash-live/module-setup.sh[m[K[36m[K:[m[K    inst_hook cmdline 31 "$[01;31m[Kmoddir[m[K/parse-iso-scan.sh"
+[35m[K90dmsquash-live/module-setup.sh[m[K[36m[K:[m[K    inst_hook pre-udev 30 "$[01;31m[Kmoddir[m[K/dmsquash-live-genrules.sh"
+[35m[K90dmsquash-live/module-setup.sh[m[K[36m[K:[m[K    inst_hook pre-udev 30 "$[01;31m[Kmoddir[m[K/dmsquash-liveiso-genrules.sh"
+[35m[K90dmsquash-live/module-setup.sh[m[K[36m[K:[m[K    inst_hook pre-pivot 20 "$[01;31m[Kmoddir[m[K/apply-live-updates.sh"
+[35m[K90dmsquash-live/module-setup.sh[m[K[36m[K:[m[K    inst_script "$[01;31m[Kmoddir[m[K/dmsquash-live-root.sh" "/sbin/dmsquash-live-root"
+[35m[K90dmsquash-live/module-setup.sh[m[K[36m[K:[m[K    inst_script "$[01;31m[Kmoddir[m[K/iso-scan.sh" "/sbin/iso-scan"
+[35m[K90dmsquash-live/module-setup.sh[m[K[36m[K:[m[K    inst_simple "$[01;31m[Kmoddir[m[K/checkisomd5@.service" "/etc/systemd/system/checkisomd5@.service"
+[35m[K90kernel-modules/module-setup.sh[m[K[36m[K:[m[K        inst_hook cmdline 01 "$[01;31m[Kmoddir[m[K/parse-kernel.sh"
+[35m[K90kernel-modules/module-setup.sh[m[K[36m[K:[m[K    inst_simple "$[01;31m[Kmoddir[m[K/insmodpost.sh" /sbin/insmodpost.sh
+[35m[K90livenet/module-setup.sh[m[K[36m[K:[m[K    inst_hook cmdline 29 "$[01;31m[Kmoddir[m[K/parse-livenet.sh"
+[35m[K90livenet/module-setup.sh[m[K[36m[K:[m[K    inst_hook initqueue/online 95 "$[01;31m[Kmoddir[m[K/fetch-liveupdate.sh"
+[35m[K90livenet/module-setup.sh[m[K[36m[K:[m[K    inst_script "$[01;31m[Kmoddir[m[K/livenetroot.sh" "/sbin/livenetroot"
+[35m[K90lvm/module-setup.sh[m[K[36m[K:[m[K    inst_rules "$[01;31m[Kmoddir[m[K/64-lvm.rules"
+[35m[K90lvm/module-setup.sh[m[K[36m[K:[m[K    inst_script "$[01;31m[Kmoddir[m[K/lvm_scan.sh" /sbin/lvm_scan
+[35m[K90lvm/module-setup.sh[m[K[36m[K:[m[K    inst_hook cmdline 30 "$[01;31m[Kmoddir[m[K/parse-lvm.sh"
+[35m[K90mdraid/module-setup.sh[m[K[36m[K:[m[K    inst_rules "$[01;31m[Kmoddir[m[K/65-md-incremental-imsm.rules"
+[35m[K90mdraid/module-setup.sh[m[K[36m[K:[m[K    inst_rules "$[01;31m[Kmoddir[m[K/59-persistent-storage-md.rules"
+[35m[K90mdraid/module-setup.sh[m[K[36m[K:[m[K        inst_hook pre-trigger 30 "$[01;31m[Kmoddir[m[K/md-noimsm.sh"
+[35m[K90mdraid/module-setup.sh[m[K[36m[K:[m[K        inst_hook pre-trigger 30 "$[01;31m[Kmoddir[m[K/md-noddf.sh"
+[35m[K90mdraid/module-setup.sh[m[K[36m[K:[m[K    inst_hook pre-udev 30 "$[01;31m[Kmoddir[m[K/mdmon-pre-udev.sh"
+[35m[K90mdraid/module-setup.sh[m[K[36m[K:[m[K    inst_hook pre-trigger 30 "$[01;31m[Kmoddir[m[K/parse-md.sh"
+[35m[K90mdraid/module-setup.sh[m[K[36m[K:[m[K    inst_hook pre-mount 10 "$[01;31m[Kmoddir[m[K/mdraid-waitclean.sh"
+[35m[K90mdraid/module-setup.sh[m[K[36m[K:[m[K    inst_hook cleanup 99 "$[01;31m[Kmoddir[m[K/mdraid-needshutdown.sh"
+[35m[K90mdraid/module-setup.sh[m[K[36m[K:[m[K    inst_hook shutdown 30 "$[01;31m[Kmoddir[m[K/md-shutdown.sh"
+[35m[K90mdraid/module-setup.sh[m[K[36m[K:[m[K    inst_script "$[01;31m[Kmoddir[m[K/mdraid-cleanup.sh" /sbin/mdraid-cleanup
+[35m[K90mdraid/module-setup.sh[m[K[36m[K:[m[K    inst_script "$[01;31m[Kmoddir[m[K/mdraid_start.sh" /sbin/mdraid_start
+[35m[K90mdraid/module-setup.sh[m[K[36m[K:[m[K    inst_hook pre-shutdown 30 "$[01;31m[Kmoddir[m[K/mdmon-pre-shutdown.sh"
+[35m[K90multipath/module-setup.sh[m[K[36m[K:[m[K        inst_hook pre-trigger 02 "$[01;31m[Kmoddir[m[K/multipathd.sh"
+[35m[K90multipath/module-setup.sh[m[K[36m[K:[m[K        inst_hook cleanup   02 "$[01;31m[Kmoddir[m[K/multipathd-stop.sh"
+[35m[K90multipath/module-setup.sh[m[K[36m[K:[m[K    inst_hook cleanup   80 "$[01;31m[Kmoddir[m[K/multipathd-needshutdown.sh"
+[35m[K91crypt-gpg/module-setup.sh[m[K[36m[K:[m[K    inst "$[01;31m[Kmoddir[m[K/crypt-gpg-lib.sh" "/lib/dracut-crypt-gpg-lib.sh"
+[35m[K91crypt-loop/module-setup.sh[m[K[36m[K:[m[K    inst "$[01;31m[Kmoddir[m[K/crypt-loop-lib.sh" "/lib/dracut-crypt-loop-lib.sh"
+[35m[K95cifs/module-setup.sh[m[K[36m[K:[m[K    inst_hook cmdline 90 "$[01;31m[Kmoddir[m[K/parse-cifsroot.sh"
+[35m[K95cifs/module-setup.sh[m[K[36m[K:[m[K    inst "$[01;31m[Kmoddir[m[K/cifsroot.sh" "/sbin/cifsroot"
+[35m[K95cifs/module-setup.sh[m[K[36m[K:[m[K    inst "$[01;31m[Kmoddir[m[K/cifs-lib.sh" "/lib/cifs-lib.sh"
+[35m[K95dasd/module-setup.sh[m[K[36m[K:[m[K    inst_hook cmdline 30 "$[01;31m[Kmoddir[m[K/parse-dasd.sh"
+[35m[K95dasd_mod/module-setup.sh[m[K[36m[K:[m[K    inst_hook cmdline 31 "$[01;31m[Kmoddir[m[K/parse-dasd-mod.sh"
+[35m[K95fcoe/module-setup.sh[m[K[36m[K:[m[K    inst "$[01;31m[Kmoddir[m[K/fcoe-up.sh" "/sbin/fcoe-up"
+[35m[K95fcoe/module-setup.sh[m[K[36m[K:[m[K    inst "$[01;31m[Kmoddir[m[K/fcoe-edd.sh" "/sbin/fcoe-edd"
+[35m[K95fcoe/module-setup.sh[m[K[36m[K:[m[K    inst "$[01;31m[Kmoddir[m[K/fcoe-genrules.sh" "/sbin/fcoe-genrules.sh"
+[35m[K95fcoe/module-setup.sh[m[K[36m[K:[m[K    inst_hook pre-trigger 03 "$[01;31m[Kmoddir[m[K/lldpad.sh"
+[35m[K95fcoe/module-setup.sh[m[K[36m[K:[m[K    inst_hook cmdline 99 "$[01;31m[Kmoddir[m[K/parse-fcoe.sh"
+[35m[K95fcoe/module-setup.sh[m[K[36m[K:[m[K    inst_hook cleanup 90 "$[01;31m[Kmoddir[m[K/cleanup-fcoe.sh"
+[35m[K95fcoe-uefi/module-setup.sh[m[K[36m[K:[m[K    inst_hook cmdline 20 "$[01;31m[Kmoddir[m[K/parse-uefifcoe.sh"
+[35m[K95fstab-sys/module-setup.sh[m[K[36m[K:[m[K    inst_hook pre-pivot 00 "$[01;31m[Kmoddir[m[K/mount-sys.sh"
+[35m[K95iscsi/module-setup.sh[m[K[36m[K:[m[K    inst_hook cmdline 90 "$[01;31m[Kmoddir[m[K/parse-iscsiroot.sh"
+[35m[K95iscsi/module-setup.sh[m[K[36m[K:[m[K    inst_hook cleanup 90 "$[01;31m[Kmoddir[m[K/cleanup-iscsi.sh"
+[35m[K95iscsi/module-setup.sh[m[K[36m[K:[m[K    inst "$[01;31m[Kmoddir[m[K/iscsiroot.sh" "/sbin/iscsiroot"
+[35m[K95iscsi/module-setup.sh[m[K[36m[K:[m[K        inst "$[01;31m[Kmoddir[m[K/mount-lun.sh" "/bin/mount-lun.sh"
+[35m[K95nbd/module-setup.sh[m[K[36m[K:[m[K    inst_hook cmdline 90 "$[01;31m[Kmoddir[m[K/parse-nbdroot.sh"
+[35m[K95nbd/module-setup.sh[m[K[36m[K:[m[K    inst_script "$[01;31m[Kmoddir[m[K/nbdroot.sh" "/sbin/nbdroot"
+[35m[K95nfs/module-setup.sh[m[K[36m[K:[m[K    inst_hook cmdline 90 "$[01;31m[Kmoddir[m[K/parse-nfsroot.sh"
+[35m[K95nfs/module-setup.sh[m[K[36m[K:[m[K    inst_hook pre-udev 99 "$[01;31m[Kmoddir[m[K/nfs-start-rpc.sh"
+[35m[K95nfs/module-setup.sh[m[K[36m[K:[m[K    inst_hook cleanup 99 "$[01;31m[Kmoddir[m[K/nfsroot-cleanup.sh"
+[35m[K95nfs/module-setup.sh[m[K[36m[K:[m[K    inst "$[01;31m[Kmoddir[m[K/nfsroot.sh" "/sbin/nfsroot"
+[35m[K95nfs/module-setup.sh[m[K[36m[K:[m[K    inst "$[01;31m[Kmoddir[m[K/nfs-lib.sh" "/lib/nfs-lib.sh"
+[35m[K95resume/module-setup.sh[m[K[36m[K:[m[K        inst_hook cmdline 10 "$[01;31m[Kmoddir[m[K/parse-resume.sh"
+[35m[K95resume/module-setup.sh[m[K[36m[K:[m[K        inst_script "$[01;31m[Kmoddir[m[K/parse-resume.sh" /lib/dracut/parse-resume.sh
+[35m[K95resume/module-setup.sh[m[K[36m[K:[m[K    inst_script  "$[01;31m[Kmoddir[m[K/resume.sh" /lib/dracut/resume.sh
+[35m[K95rootfs-block/module-setup.sh[m[K[36m[K:[m[K        inst_hook cmdline 95 "$[01;31m[Kmoddir[m[K/parse-block.sh"
+[35m[K95rootfs-block/module-setup.sh[m[K[36m[K:[m[K        inst_hook pre-udev 30 "$[01;31m[Kmoddir[m[K/block-genrules.sh"
+[35m[K95rootfs-block/module-setup.sh[m[K[36m[K:[m[K        inst_hook mount 99 "$[01;31m[Kmoddir[m[K/mount-root.sh"
+[35m[K95rootfs-block/module-setup.sh[m[K[36m[K:[m[K    inst_hook initqueue/timeout 99 "$[01;31m[Kmoddir[m[K/rootfallback.sh"
+[35m[K95udev-rules/module-setup.sh[m[K[36m[K:[m[K        "$[01;31m[Kmoddir[m[K/59-persistent-storage.rules" \
+[35m[K95udev-rules/module-setup.sh[m[K[36m[K:[m[K        "$[01;31m[Kmoddir[m[K/61-persistent-storage.rules" \
+[35m[K95udev-rules/module-setup.sh[m[K[36m[K:[m[K        inst_script "$[01;31m[Kmoddir[m[K/load-modules.sh" /lib/udev/load-modules.sh
+[35m[K95virtfs/module-setup.sh[m[K[36m[K:[m[K    inst_hook cmdline 95 "$[01;31m[Kmoddir[m[K/parse-virtfs.sh"
+[35m[K95virtfs/module-setup.sh[m[K[36m[K:[m[K        inst_hook mount 99 "$[01;31m[Kmoddir[m[K/mount-virtfs.sh"
+[35m[K95virtfs/module-setup.sh[m[K[36m[K:[m[K        inst_script "$[01;31m[Kmoddir[m[K/virtfs-generator.sh" $systemdutildir/system-generators/dracut-virtfs-generator
+[35m[K95zfcp/module-setup.sh[m[K[36m[K:[m[K    inst_hook cmdline 30 "$[01;31m[Kmoddir[m[K/parse-zfcp.sh"
+[35m[K95znet/module-setup.sh[m[K[36m[K:[m[K    inst_hook cmdline 30 "$[01;31m[Kmoddir[m[K/parse-ccw.sh"
+[35m[K98ecryptfs/module-setup.sh[m[K[36m[K:[m[K    inst_hook pre-pivot 63 "$[01;31m[Kmoddir[m[K/ecryptfs-mount.sh"
+[35m[K98pollcdrom/module-setup.sh[m[K[36m[K:[m[K    inst_hook initqueue/settled 99 "$[01;31m[Kmoddir[m[K/pollcdrom.sh"
+[35m[K98selinux/module-setup.sh[m[K[36m[K:[m[K    inst_hook pre-pivot 50 "$[01;31m[Kmoddir[m[K/selinux-loadpolicy.sh"
+[35m[K98syslog/module-setup.sh[m[K[36m[K:[m[K        inst_hook cmdline  90 "$[01;31m[Kmoddir[m[K/parse-syslog-opts.sh"
+[35m[K98syslog/module-setup.sh[m[K[36m[K:[m[K        inst_hook pre-udev 61 "$[01;31m[Kmoddir[m[K/syslog-genrules.sh"
+[35m[K98syslog/module-setup.sh[m[K[36m[K:[m[K        inst_hook cleanup 99 "$[01;31m[Kmoddir[m[K/syslog-cleanup.sh"
+[35m[K98syslog/module-setup.sh[m[K[36m[K:[m[K        inst_simple "$[01;31m[Kmoddir[m[K/rsyslogd-start.sh" /sbin/rsyslogd-start
+[35m[K98syslog/module-setup.sh[m[K[36m[K:[m[K        inst_simple "$[01;31m[Kmoddir[m[K/rsyslogd-stop.sh" /sbin/rsyslogd-stop
+[35m[K98syslog/module-setup.sh[m[K[36m[K:[m[K        inst_simple "${[01;31m[Kmoddir[m[K}/rsyslog.conf" /etc/templates
+[35m[K98systemd/module-setup.sh[m[K[36m[K:[m[K    inst_script "$[01;31m[Kmoddir[m[K/dracut-emergency.sh" /bin/dracut-emergency
+[35m[K98systemd/module-setup.sh[m[K[36m[K:[m[K    inst_simple "$[01;31m[Kmoddir[m[K/emergency.service" ${systemdsystemunitdir}/emergency.service
+[35m[K98systemd/module-setup.sh[m[K[36m[K:[m[K    inst_simple "$[01;31m[Kmoddir[m[K/dracut-emergency.service" ${systemdsystemunitdir}/dracut-emergency.service
+[35m[K98systemd/module-setup.sh[m[K[36m[K:[m[K    inst_simple "$[01;31m[Kmoddir[m[K/emergency.service" ${systemdsystemunitdir}/rescue.service
+[35m[K98systemd/module-setup.sh[m[K[36m[K:[m[K    inst_script "$[01;31m[Kmoddir[m[K/dracut-cmdline.sh" /bin/dracut-cmdline
+[35m[K98systemd/module-setup.sh[m[K[36m[K:[m[K    inst_script "$[01;31m[Kmoddir[m[K/dracut-cmdline-ask.sh" /bin/dracut-cmdline-ask
+[35m[K98systemd/module-setup.sh[m[K[36m[K:[m[K    inst_script "$[01;31m[Kmoddir[m[K/dracut-pre-udev.sh" /bin/dracut-pre-udev
+[35m[K98systemd/module-setup.sh[m[K[36m[K:[m[K    inst_script "$[01;31m[Kmoddir[m[K/dracut-pre-trigger.sh" /bin/dracut-pre-trigger
+[35m[K98systemd/module-setup.sh[m[K[36m[K:[m[K    inst_script "$[01;31m[Kmoddir[m[K/dracut-initqueue.sh" /bin/dracut-initqueue
+[35m[K98systemd/module-setup.sh[m[K[36m[K:[m[K    inst_script "$[01;31m[Kmoddir[m[K/dracut-pre-mount.sh" /bin/dracut-pre-mount
+[35m[K98systemd/module-setup.sh[m[K[36m[K:[m[K    inst_script "$[01;31m[Kmoddir[m[K/dracut-mount.sh" /bin/dracut-mount
+[35m[K98systemd/module-setup.sh[m[K[36m[K:[m[K    inst_script "$[01;31m[Kmoddir[m[K/dracut-pre-pivot.sh" /bin/dracut-pre-pivot
+[35m[K98systemd/module-setup.sh[m[K[36m[K:[m[K    inst_script "$[01;31m[Kmoddir[m[K/rootfs-generator.sh" $systemdutildir/system-generators/dracut-rootfs-generator
+[35m[K98systemd/module-setup.sh[m[K[36m[K:[m[K        inst_simple "$[01;31m[Kmoddir[m[K/${i}" "$systemdsystemunitdir/${i}"
+[35m[K98systemd/module-setup.sh[m[K[36m[K:[m[K    inst_simple "$[01;31m[Kmoddir[m[K/dracut-tmpfiles.conf" "$tmpfilesdir/dracut-tmpfiles.conf"
+[35m[K98usrmount/module-setup.sh[m[K[36m[K:[m[K        inst_hook pre-pivot 50 "$[01;31m[Kmoddir[m[K/mount-usr.sh"
+[35m[K99base/module-setup.sh[m[K[36m[K:[m[K    inst_script "$[01;31m[Kmoddir[m[K/init.sh" "/init"
+[35m[K99base/module-setup.sh[m[K[36m[K:[m[K    inst_script "$[01;31m[Kmoddir[m[K/initqueue.sh" "/sbin/initqueue"
+[35m[K99base/module-setup.sh[m[K[36m[K:[m[K    inst_script "$[01;31m[Kmoddir[m[K/loginit.sh" "/sbin/loginit"
+[35m[K99base/module-setup.sh[m[K[36m[K:[m[K    inst_script "$[01;31m[Kmoddir[m[K/rdsosreport.sh" "/sbin/rdsosreport"
+[35m[K99base/module-setup.sh[m[K[36m[K:[m[K    inst_script "$[01;31m[Kmoddir[m[K/memtrace-ko.sh" "/sbin/tracekomem"
+[35m[K99base/module-setup.sh[m[K[36m[K:[m[K    inst_simple "$[01;31m[Kmoddir[m[K/dracut-lib.sh" "/lib/dracut-lib.sh"
+[35m[K99base/module-setup.sh[m[K[36m[K:[m[K        inst_hook cmdline 10 "$[01;31m[Kmoddir[m[K/parse-root-opts.sh"
+[35m[K99base/module-setup.sh[m[K[36m[K:[m[K                . "$[01;31m[Kmoddir[m[K/dracut-lib.sh"
+[35m[K99fs-lib/module-setup.sh[m[K[36m[K:[m[K    inst "$[01;31m[Kmoddir[m[K/fs-lib.sh" "/lib/fs-lib.sh"
+[35m[K99img-lib/module-setup.sh[m[K[36m[K:[m[K    inst_simple "$[01;31m[Kmoddir[m[K/img-lib.sh" "/lib/img-lib.sh"
+[35m[K99kdumpbase/module-setup.sh[m[K[36m[K:[m[K    inst "$[01;31m[Kmoddir[m[K/monitor_dd_progress" "/kdumpscripts/monitor_dd_progress"
+[35m[K99kdumpbase/module-setup.sh[m[K[36m[K:[m[K    inst "$[01;31m[Kmoddir[m[K/kdump.sh" "/usr/bin/kdump.sh"
+[35m[K99kdumpbase/module-setup.sh[m[K[36m[K:[m[K    inst "$[01;31m[Kmoddir[m[K/kdump-capture.service" "$systemdsystemunitdir/kdump-capture.service"
+[35m[K99kdumpbase/module-setup.sh[m[K[36m[K:[m[K    inst "$[01;31m[Kmoddir[m[K/kdump-error-handler.sh" "/usr/bin/kdump-error-handler.sh"
+[35m[K99kdumpbase/module-setup.sh[m[K[36m[K:[m[K    inst "$[01;31m[Kmoddir[m[K/kdump-error-handler.service" "$systemdsystemunitdir/kdump-error-handler.service"
+[35m[K99kdumpbase/module-setup.sh[m[K[36m[K:[m[K    cp "$[01;31m[Kmoddir[m[K/kdump-emergency.service" "$initdir/$systemdsystemunitdir/emergency.service"
+[35m[K99kdumpbase/module-setup.sh[m[K[36m[K:[m[K    cp "$[01;31m[Kmoddir[m[K/kdump-emergency.target" "$initdir/$systemdsystemunitdir/emergency.target"
+[35m[K99shutdown/module-setup.sh[m[K[36m[K:[m[K    inst "$[01;31m[Kmoddir[m[K/shutdown.sh" "$prefix/shutdown"
+[35m[K99uefi-lib/module-setup.sh[m[K[36m[K:[m[K    inst_simple "$[01;31m[Kmoddir[m[K/uefi-lib.sh" "/lib/uefi-lib.sh"
+]0;root@node2:/usr/lib/dracut/modules.d[root@node2 modules.d]# ll 99shutdown/module-setup.sh
+-rwxr-xr-x. 1 root root 632 ноя  2  2018 [0m[01;32m99shutdown/module-setup.sh[0m
+]0;root@node2:/usr/lib/dracut/modules.d[root@node2 modules.d]# ll 99shutdown/module-setup.sh[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[13Pgrep -r moddir *cd ..[Kls ${moddir}/test.sh[6Pecho $$initdir[7Pinitdirecho $initdir$initdir[1Pinitdir[6Pinitdirecho $$initdirls ${moddir}/test.shcd ..[Kgrep -r moddir *ll 99shutdown/module-setup.sh[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Kll 01test/
+итого 8
+-rwxr-xr-x. 1 root root 137 май 14 23:24 [0m[01;32mmodule_setup.sh[0m
+-rwxr-xr-x. 1 root root 349 май 14 23:24 [01;32mtest.sh[0m
+]0;root@node2:/usr/lib/dracut/modules.d[root@node2 modules.d]#  dracut -f -v
+Executing: /usr/sbin/dracut -f -v
+dracut module 'modsign' will not be installed, because command 'keyctl' could not be found!
+dracut module 'busybox' will not be installed, because command 'busybox' could not be found!
+dracut module 'crypt' will not be installed, because command 'cryptsetup' could not be found!
+dracut module 'dmraid' will not be installed, because command 'dmraid' could not be found!
+dracut module 'dmsquash-live-ntfs' will not be installed, because command 'ntfs-3g' could not be found!
+dracut module 'mdraid' will not be installed, because command 'mdadm' could not be found!
+dracut module 'multipath' will not be installed, because command 'multipath' could not be found!
+dracut module 'cifs' will not be installed, because command 'mount.cifs' could not be found!
+dracut module 'iscsi' will not be installed, because command 'iscsistart' could not be found!
+dracut module 'iscsi' will not be installed, because command 'iscsi-iname' could not be found!
+95nfs: Could not find any command of 'rpcbind portmap'!
+dracut module 'modsign' will not be installed, because command 'keyctl' could not be found!
+dracut module 'busybox' will not be installed, because command 'busybox' could not be found!
+dracut module 'crypt' will not be installed, because command 'cryptsetup' could not be found!
+dracut module 'dmraid' will not be installed, because command 'dmraid' could not be found!
+dracut module 'dmsquash-live-ntfs' will not be installed, because command 'ntfs-3g' could not be found!
+dracut module 'mdraid' will not be installed, because command 'mdadm' could not be found!
+dracut module 'multipath' will not be installed, because command 'multipath' could not be found!
+dracut module 'cifs' will not be installed, because command 'mount.cifs' could not be found!
+dracut module 'iscsi' will not be installed, because command 'iscsistart' could not be found!
+dracut module 'iscsi' will not be installed, because command 'iscsi-iname' could not be found!
+95nfs: Could not find any command of 'rpcbind portmap'!
+*** Including module: bash ***
+*** Including module: nss-softokn ***
+*** Including module: i18n ***
+*** Including module: network ***
+*** Including module: ifcfg ***
+*** Including module: drm ***
+*** Including module: plymouth ***
+*** Including module: dm ***
+Skipping udev rule: 64-device-mapper.rules
+Skipping udev rule: 60-persistent-storage-dm.rules
+Skipping udev rule: 55-dm.rules
+*** Including module: kernel-modules ***
+*** Including module: lvm ***
+Skipping udev rule: 64-device-mapper.rules
+Skipping udev rule: 56-lvm.rules
+Skipping udev rule: 60-persistent-storage-lvm.rules
+*** Including module: qemu ***
+*** Including module: resume ***
+*** Including module: rootfs-block ***
+*** Including module: terminfo ***
+*** Including module: udev-rules ***
+Skipping udev rule: 40-redhat-cpu-hotplug.rules
+Skipping udev rule: 91-permissions.rules
+*** Including module: biosdevname ***
+*** Including module: systemd ***
+*** Including module: usrmount ***
+*** Including module: base ***
+*** Including module: fs-lib ***
+*** Including module: microcode_ctl-fw_dir_override ***
+  microcode_ctl module: mangling fw_dir
+    microcode_ctl: reset fw_dir to "/lib/firmware/updates /lib/firmware"
+    microcode_ctl: processing data directory  "/usr/share/microcode_ctl/ucode_with_caveats/intel"...
+intel: model '', path ' intel-ucode/*', kvers ''
+intel: blacklist ''
+    microcode_ctl: intel: Host-Only mode is enabled and "intel-ucode/06-8e-0a" matches "intel-ucode/*"
+      microcode_ctl: intel: caveats check for kernel version "3.10.0-957.el7.x86_64" passed, adding "/usr/share/microcode_ctl/ucode_with_caveats/intel" to fw_dir variable
+    microcode_ctl: processing data directory  "/usr/share/microcode_ctl/ucode_with_caveats/intel-06-4f-01"...
+intel-06-4f-01: model 'GenuineIntel 06-4f-01', path ' intel-ucode/06-4f-01', kvers ' 4.17.0 3.10.0-894 3.10.0-862.6.1 3.10.0-693.35.1 3.10.0-514.52.1 3.10.0-327.70.1 2.6.32-754.1.1 2.6.32-573.58.1 2.6.32-504.71.1 2.6.32-431.90.1 2.6.32-358.90.1'
+intel-06-4f-01: blacklist ''
+intel-06-4f-01: caveat is disabled in configuration
+    microcode_ctl: kernel version "3.10.0-957.el7.x86_64" failed early load check for "intel-06-4f-01", skipping
+    microcode_ctl: final fw_dir: "/usr/share/microcode_ctl/ucode_with_caveats/intel /lib/firmware/updates /lib/firmware"
+*** Including module: shutdown ***
+*** Including modules done ***
+*** Installing kernel module dependencies and firmware ***
+*** Installing kernel module dependencies and firmware done ***
+*** Resolving executable dependencies ***
+*** Resolving executable dependencies done***
+*** Hardlinking files ***
+*** Hardlinking files done ***
+*** Stripping files ***
+*** Stripping files done ***
+*** Generating early-microcode cpio image contents ***
+*** Constructing GenuineIntel.bin ****
+*** Constructing GenuineIntel.bin ****
+*** Store current command line parameters ***
+*** Creating image file ***
+*** Creating microcode section ***
+*** Created microcode section ***
+*** Creating image file done ***
+*** Creating initramfs image file '/boot/initramfs-3.10.0-957.el7.x86_64.img' done ***
+]0;root@node2:/usr/lib/dracut/modules.d[root@node2 modules.d]#  dracut -f -v[3Pll 01test/99shutdown/module-setup.sh[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[13Pgrep -r moddir *cd ..[Kls ${moddir}/test.sh
