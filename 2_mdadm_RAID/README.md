@@ -1,3 +1,4 @@
+```
 #Create software RAID
 fdisk -l #show disk in OS
 lshw -short #show microcore, kernel, RAM, CPU, disk
@@ -30,3 +31,4 @@ parted /dev/md0 mkpart primary ext4 60% 80%
 parted /dev/md0 mkpart primary ext4 80% 100%
 for i in $(seq 1 5); do sudo mkfs.ext4 /dev/md0p$i; done
 for i in $(seq 1 5); do mount /dev/md0p$i /raid/part$i; done
+```
