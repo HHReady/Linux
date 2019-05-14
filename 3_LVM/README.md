@@ -2,13 +2,13 @@
 
 Также можно воспользоваться утилитой 
 lvmdiskscan
-
+{noformat}
 Для начала разметим диск для будущего использования LVM - создадим PV:
 [root@otuslinux ~]#pvcreate /dev/sdb
 Затем можно создавать первый уровень абстракции - VG:
-[root@otuslinux ~]#vgcreate otus /dev/sdb
+[root@otuslinux ~]#vgcreate otus /dev/sdb  (Если нужно расширить существующее vgextend otus /dev/sdb)
 И в итоге создать Logical Volume (далее - LV):
-[root@otuslinux ~]#lvcreate -l+80%FREE -n test otus
+[root@otuslinux ~]#lvcreate -l+80%FREE -n test otus (Если нужно расширить существующее lvextend -L+40G -n test otus )
 Посмотреть информацию о только что созданном Volume Group:
 [root@otuslinux ~]#vgdisplay otus
 Так, например, можно посмотреть информацию о том, какие диски входит в VG:
@@ -221,3 +221,5 @@ grub,
 [root@otuslinux ~]#umount /home
 [root@otuslinux ~]# lvconvert --merge /dev/VolGroup00/home_snap
 [root@otuslinux ~]# mount /home
+
+{noformat}
