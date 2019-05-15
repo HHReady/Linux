@@ -53,7 +53,7 @@ chroot /sysroot
 ## Установить систему с LVM, после чего переименовать VG
 
 Первым делом посмотрим текущее состояние системы:
-``
+```
 [root@otuslinux ~]# vgs
  VG #PV #LV #SN Attr VSize VFree
  VolGroup00 1 2 0 wz--n- <38.97g 0
