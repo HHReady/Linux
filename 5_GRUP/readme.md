@@ -53,7 +53,7 @@ chroot /sysroot
 ## Установить систему с LVM, после чего переименовать VG
 
 Первым делом посмотрим текущее состояние системы:
-``
+```
 [root@otuslinux ~]# vgs
  VG #PV #LV #SN Attr VSize VFree
  VolGroup00 1 2 0 wz--n- <38.97g 0
@@ -100,12 +100,16 @@ sed 's/centos/OtusRoot/g' /boot/grub2/grub.cfg -i
 2. test.sh - собственно сам вызываемый скрипт, в нём у нас рисуется пингвинчик
 
 ● Пересобираем образ initrd
+```
 [root@otuslinux ~]# mkinitrd -f -v /boot/initramfs-$(uname -r).img $(uname -r)
 или
 [root@otuslinux ~]# dracut -f -v
+```
 ● Можно проверить/посмотреть какие модули загружены в образ:
+```
 [root@otuslinux ~]# lsinitrd -m /boot/initramfs-$(uname -r).img | grep test
 test
+```
 ####  После чего можно пойти двумя путями для проверки:
 	* Перезагрузиться и руками выключить опции rghb и quiet и увидеть вывод
 	* Либо отредактироватþ grub.cfg убрав эти опции
