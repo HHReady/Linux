@@ -1,8 +1,6 @@
-import os, time
-import sys
+import os
 
 pid_list = os.listdir('/proc')
-
 for num in pid_list:
         if num.isdigit():
             stat = open("/proc/" + num + "/stat", 'rt')
