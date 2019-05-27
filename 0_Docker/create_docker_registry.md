@@ -105,9 +105,9 @@ for i in `ls`; do docker load -i $i; done
 Теперь пытаемся забросить в репозиторий 
 
 ```
-docker tag openshift/origin-node:v3.11 localhost:19000/origin-node:v3.11 #смена тега
+docker tag openshift/origin-node:v3.11 192.168.209.18:19000/origin-node:v3.11 #смена тега
 # или скриптом 
-for i in ` docker images | awk 'BEGIN{OFS = ":"}{print $1, $2}' | grep -v REPOSITORY | grep -v registry`; do echo " docker tag $i localhost:19000/`echo $i | awk -F'/' '{print $2}'`" ; done
+for i in ` docker images | awk 'BEGIN{OFS = ":"}{print $1, $2}' | grep -v REPOSITORY | grep -v registry`; do echo " docker tag $i 192.168.209.18:19000/`echo $i | awk -F'/' '{print $2}'`" ; done
 
 docker rmi -f openshift/origin-node:v3.11 #удаляем предыдущий
 # или удалить сприптом
@@ -117,3 +117,24 @@ docker push localhost:19000/origin-deployer:v3.11.0 #загружаем в ре�
 # или скриптом
 for i in ` docker images| grep 19000 | awk 'BEGIN{OFS = ":"}{print $1, $2}' | grep -v REPOSITORY | grep -v registry`; do echo " docker push $i " ; done
 ```
+
+Скачать образ из нашего репозитория
+``` 
+docker pull localhost:19000/origin-node:v3.11
+```
+
+Если не отвечает по внешнему Ip 
+
+http: server gave HTTP response to HTTPS client
+
+
+значит по пути /etc/docker нужно создать файлик 
+daemon.json
+```
+{
+  "insecure-registries" : ["192.168.209.18:19000"]
+}
+```
+
+systemctl restart docker
+
