@@ -1,0 +1,6 @@
+[ADG-2.6]
+name=ADG-2.6
+baseurl=https://storage.googleapis.com/arenadata-repo/ADG/2.6/centos7/repos/
+gpgcheck=0
+enabled=1
+priority=1
