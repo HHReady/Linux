@@ -1,0 +1,1 @@
+{"rsync":{"/vagrant":{"type":"rsync","guestpath":"/vagrant","hostpath":"D:/users/afidelina/Documents/GitHub/Linux/Linux/12_Ansible/Ansible","disabled":false,"__vagrantfile":true,"owner":"vagrant","group":"vagrant"}}}
